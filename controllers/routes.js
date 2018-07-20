@@ -15,6 +15,7 @@ const companyCreateCompany = require('./company_controller/createCompany');
 const companyCreateCompanyCrew = require('./company_controller/createCompanyCrew');
 const companyCreateCompanyRole = require('./company_controller/createCompanyRole')
 const companyCreateCompanyCrewMember = require('./company_controller/createCompanyCrewMember');
+const companyCreateEmployee = require('./company_controller/createEmployee');
 
 // users
 
@@ -36,4 +37,5 @@ module.exports = guru => {
     guru.post('/company/crew', companyCreateCompanyCrew);
     guru.post('/company/role', companyCreateCompanyRole);
     guru.post('/company/crewmember', companyCreateCompanyCrewMember);
+    guru.post('/company/employee', companyCreateEmployee);
 };
