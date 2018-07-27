@@ -1,0 +1,13 @@
+{
+    "defaultEnv": "pg",
+
+    "pg": {
+        "driver": "pg",
+        "user": "postgres",
+        "password": "guest",
+        "host": "localhost",
+        "port": "5432",
+        "database": "guru",
+        "schema": "public"
+    }
+}
