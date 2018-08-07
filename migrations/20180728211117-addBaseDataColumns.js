@@ -57,7 +57,7 @@ exports.up = function(db, callback) {
         notNull: true,
       }),
       db.addColumn.bind(db, 'users', 'date_birth', {
-        type: dataType.TIMESTAMP,
+        type: dataType.DATE,
         notNull: false,
       }),
       // roles table
@@ -132,12 +132,6 @@ exports.up = function(db, callback) {
         length: 50,
         notNull: true,
       }),
-      // fixture_tasks table
-      db.addColumn.bind(db, 'fixture_tasks', 'name_fixture_task', {
-        type: dataType.STRING,
-        length: 50,
-        notNull: true,
-      }),
       // crews table
       db.addColumn.bind(db, 'crews', 'name_crew', {
         type: dataType.STRING,
@@ -205,8 +199,6 @@ exports.down = function(db, callback) {
       db.removeColumn.bind(db, 'properties', 'name_property'),
       // property_rooms table
       db.removeColumn.bind(db, 'property_rooms', 'name_property_room'),
-      // fixture_tasks table
-      db.removeColumn.bind(db, 'fixture_tasks', 'name_fixture_task'),
       // crews table
       db.removeColumn.bind(db, 'crews', 'name_crew'),
       // jobs table
