@@ -126,6 +126,37 @@ exports.up = function(db, callback) {
         length: 50,
         notNull: true,
       }),
+      // property addresses
+      db.addColumn.bind(db, 'property_addresses', 'address_line_1', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
+      db.addColumn.bind(db, 'property_addresses', 'address_line_2', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
+      db.addColumn.bind(db, 'property_addresses', 'address_line_3', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
+      db.addColumn.bind(db, 'property_addresses', 'name_city', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
+      db.addColumn.bind(db, 'property_addresses', 'state', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
+      db.addColumn.bind(db, 'property_addresses', 'zipcode', {
+          type: dataType.STRING,
+          length: 50,
+          notNull: true,
+      }),
       // property_rooms
       db.addColumn.bind(db, 'property_rooms', 'name_property_room', {
         type: dataType.STRING,
@@ -197,6 +228,13 @@ exports.down = function(db, callback) {
       db.removeColumn.bind(db, 'company_addresses', 'zipcode'),
       // properties table
       db.removeColumn.bind(db, 'properties', 'name_property'),
+      // property addresses
+      db.removeColumn.bind(db, 'property_addresses', 'address_line_1'),
+        db.removeColumn.bind(db, 'property_addresses', 'address_line_2'),
+        db.removeColumn.bind(db, 'property_addresses', 'address_line_3'),
+        db.removeColumn.bind(db, 'property_addresses', 'name_city'),
+        db.removeColumn.bind(db, 'property_addresses', 'state'),
+        db.removeColumn.bind(db, 'property_addresses', 'zipcode'),
       // property_rooms table
       db.removeColumn.bind(db, 'property_rooms', 'name_property_room'),
       // crews table
