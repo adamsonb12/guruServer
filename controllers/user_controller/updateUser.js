@@ -1,13 +1,5 @@
 module.exports = (req, res) => {
-    // receive user data
-    // validate
-    // write to db
-    // res.send({
-    //     user_id: 'user_id',
-    //     // Other meta data, probably wouldn't return anything else with this
-    // });
-
-    console.log('User created');
+    console.log('User updated');
 
     const bookshelf = require('../../bookshelf');
 
@@ -29,8 +21,8 @@ module.exports = (req, res) => {
     );
 
     user
-        .save(null, {method: 'insert'})
-        .then((createdUser) => {
-            res.send(createdUser);
+        .save()
+        .then((updatedUser) => {
+            res.send(updatedUser);
         });
 };
