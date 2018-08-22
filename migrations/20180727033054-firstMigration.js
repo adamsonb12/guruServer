@@ -200,7 +200,13 @@ exports.up = function(db, callback) {
           },
         },
       }),
-      db.addIndex.bind(db, 'company_employee_roles', 'company_employee_roles_company_id_employee_id_unique', ['company_id', 'employee_id'], true),
+      db.addIndex.bind(
+        db,
+        'company_employee_roles',
+        'company_employee_roles_company_id_employee_id_unique',
+        ['company_id', 'employee_id'],
+        true
+      ),
       db.createTable.bind(db, 'property_rooms', {
         id: { type: dataType.INTEGER, primaryKey: true, autoIncrement: true },
         property_id: {
