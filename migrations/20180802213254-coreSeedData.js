@@ -13,9 +13,9 @@ let seed;
 const dataType = dataTypes.dataType;
 
 /**
-  * We receive the dbmigrate dependency from dbmigrate initially.
-  * This enables us to not have to rely on NODE_PATH.
-  */
+ * We receive the dbmigrate dependency from dbmigrate initially.
+ * This enables us to not have to rely on NODE_PATH.
+ */
 exports.setup = function(options, seedLink) {
   dbm = options.dbmigrate;
   type = dbm.dataType;
@@ -78,5 +78,5 @@ exports.down = function(db, callback) {
 };
 
 exports._meta = {
-  "version": 1
+  version: 1,
 };

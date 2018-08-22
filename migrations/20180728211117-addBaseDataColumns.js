@@ -128,34 +128,34 @@ exports.up = function(db, callback) {
       }),
       // property addresses
       db.addColumn.bind(db, 'property_addresses', 'address_line_1', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       db.addColumn.bind(db, 'property_addresses', 'address_line_2', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       db.addColumn.bind(db, 'property_addresses', 'address_line_3', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       db.addColumn.bind(db, 'property_addresses', 'name_city', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       db.addColumn.bind(db, 'property_addresses', 'state', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       db.addColumn.bind(db, 'property_addresses', 'zipcode', {
-          type: dataType.STRING,
-          length: 50,
-          notNull: true,
+        type: dataType.STRING,
+        length: 50,
+        notNull: true,
       }),
       // property_rooms
       db.addColumn.bind(db, 'property_rooms', 'name_property_room', {
@@ -204,48 +204,48 @@ exports.down = function(db, callback) {
   async.series(
     [
       // users table
-      db.removeColumn.bind(db, 'users', 'name_first'),
-      db.removeColumn.bind(db, 'users', 'name_last'),
-      db.removeColumn.bind(db, 'users', 'name_middle'),
-      db.removeColumn.bind(db, 'users', 'email'),
-      db.removeColumn.bind(db, 'users', 'password'),
-      db.removeColumn.bind(db, 'users', 'date_birth'),
+      db.removeColumn.bind(db, 'users', 'name_first', { ifExists: true }),
+      db.removeColumn.bind(db, 'users', 'name_last', { ifExists: true }),
+      db.removeColumn.bind(db, 'users', 'name_middle', { ifExists: true }),
+      db.removeColumn.bind(db, 'users', 'email', { ifExists: true }),
+      db.removeColumn.bind(db, 'users', 'password', { ifExists: true }),
+      db.removeColumn.bind(db, 'users', 'date_birth', { ifExists: true }),
       // roles table
-      db.removeColumn.bind(db, 'roles', 'name_role'),
+      db.removeColumn.bind(db, 'roles', 'name_role', { ifExists: true }),
       // fixtures table
-      db.removeColumn.bind(db, 'fixtures', 'name_fixture'),
+      db.removeColumn.bind(db, 'fixtures', 'name_fixture', { ifExists: true }),
       // tasks table
-      db.removeColumn.bind(db, 'tasks', 'name_task'),
+      db.removeColumn.bind(db, 'tasks', 'name_task', { ifExists: true }),
       // companies table
-      db.removeColumn.bind(db, 'companies', 'name_company'),
-      db.removeColumn.bind(db, 'companies', 'shortname_company'),
+      db.removeColumn.bind(db, 'companies', 'name_company', { ifExists: true }),
+      db.removeColumn.bind(db, 'companies', 'shortname_company', { ifExists: true }),
       // company addresses
-      db.removeColumn.bind(db, 'company_addresses', 'address_line_1'),
-      db.removeColumn.bind(db, 'company_addresses', 'address_line_2'),
-      db.removeColumn.bind(db, 'company_addresses', 'address_line_3'),
-      db.removeColumn.bind(db, 'company_addresses', 'name_city'),
-      db.removeColumn.bind(db, 'company_addresses', 'state'),
-      db.removeColumn.bind(db, 'company_addresses', 'zipcode'),
+      db.removeColumn.bind(db, 'company_addresses', 'address_line_1', { ifExists: true }),
+      db.removeColumn.bind(db, 'company_addresses', 'address_line_2', { ifExists: true }),
+      db.removeColumn.bind(db, 'company_addresses', 'address_line_3', { ifExists: true }),
+      db.removeColumn.bind(db, 'company_addresses', 'name_city', { ifExists: true }),
+      db.removeColumn.bind(db, 'company_addresses', 'state', { ifExists: true }),
+      db.removeColumn.bind(db, 'company_addresses', 'zipcode', { ifExists: true }),
       // properties table
-      db.removeColumn.bind(db, 'properties', 'name_property'),
+      db.removeColumn.bind(db, 'properties', 'name_property', { ifExists: true }),
       // property addresses
-      db.removeColumn.bind(db, 'property_addresses', 'address_line_1'),
-        db.removeColumn.bind(db, 'property_addresses', 'address_line_2'),
-        db.removeColumn.bind(db, 'property_addresses', 'address_line_3'),
-        db.removeColumn.bind(db, 'property_addresses', 'name_city'),
-        db.removeColumn.bind(db, 'property_addresses', 'state'),
-        db.removeColumn.bind(db, 'property_addresses', 'zipcode'),
+      db.removeColumn.bind(db, 'property_addresses', 'address_line_1', { ifExists: true }),
+      db.removeColumn.bind(db, 'property_addresses', 'address_line_2', { ifExists: true }),
+      db.removeColumn.bind(db, 'property_addresses', 'address_line_3', { ifExists: true }),
+      db.removeColumn.bind(db, 'property_addresses', 'name_city', { ifExists: true }),
+      db.removeColumn.bind(db, 'property_addresses', 'state', { ifExists: true }),
+      db.removeColumn.bind(db, 'property_addresses', 'zipcode', { ifExists: true }),
       // property_rooms table
-      db.removeColumn.bind(db, 'property_rooms', 'name_property_room'),
+      db.removeColumn.bind(db, 'property_rooms', 'name_property_room', { ifExists: true }),
       // crews table
-      db.removeColumn.bind(db, 'crews', 'name_crew'),
+      db.removeColumn.bind(db, 'crews', 'name_crew', { ifExists: true }),
       // jobs table
-      db.removeColumn.bind(db, 'jobs', 'date_scheduled'),
-      db.removeColumn.bind(db, 'jobs', 'date_starts'),
-      db.removeColumn.bind(db, 'jobs', 'estimated_duration'),
-      db.removeColumn.bind(db, 'jobs', 'date_arrived'),
-      db.removeColumn.bind(db, 'jobs', 'date_completed'),
-      db.removeColumn.bind(db, 'jobs', 'tip_amount'),
+      db.removeColumn.bind(db, 'jobs', 'date_scheduled', { ifExists: true }),
+      db.removeColumn.bind(db, 'jobs', 'date_starts', { ifExists: true }),
+      db.removeColumn.bind(db, 'jobs', 'estimated_duration', { ifExists: true }),
+      db.removeColumn.bind(db, 'jobs', 'date_arrived', { ifExists: true }),
+      db.removeColumn.bind(db, 'jobs', 'date_completed', { ifExists: true }),
+      db.removeColumn.bind(db, 'jobs', 'tip_amount', { ifExists: true }),
     ],
     callback
   );
