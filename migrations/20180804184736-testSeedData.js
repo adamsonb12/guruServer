@@ -12,10 +12,10 @@ let seed;
 const dataType = dataTypes.dataType;
 
 // unique user id's
-let user_id1 = uuidv1();
-let user_id2 = uuidv1();
-let user_id3 = uuidv1();
-let user_id4 = uuidv1();
+const user_id1 = uuidv1();
+const user_id2 = uuidv1();
+const user_id3 = uuidv1();
+const user_id4 = uuidv1();
 
 // unique property id's
 // let property_id1 = uuidv1();
@@ -24,10 +24,10 @@ let user_id4 = uuidv1();
 // let property_id4 = uuidv1();
 
 // unique property address id's
-let property_address_id1 = uuidv1();
-let property_address_id2 = uuidv1();
-let property_address_id3 = uuidv1();
-let property_address_id4 = uuidv1();
+const property_address_id1 = uuidv1();
+const property_address_id2 = uuidv1();
+const property_address_id3 = uuidv1();
+const property_address_id4 = uuidv1();
 
 // unique property room id's
 // let property_room_id1 = uuidv1();
@@ -36,46 +36,50 @@ let property_address_id4 = uuidv1();
 // let property_room_id4 = uuidv1();
 
 // unique property room fixture id's
-let property_room_fixture_id1 = uuidv1();
-let property_room_fixture_id2 = uuidv1();
-let property_room_fixture_id3 = uuidv1();
-let property_room_fixture_id4 = uuidv1();
+const property_room_fixture_id1 = uuidv1();
+const property_room_fixture_id2 = uuidv1();
+const property_room_fixture_id3 = uuidv1();
+const property_room_fixture_id4 = uuidv1();
 
 // unique company id's
-let company_id1 = uuidv1();
-let company_id2 = uuidv1();
-let company_id3 = uuidv1();
-let company_id4 = uuidv1();
+const company_id1 = uuidv1();
+const company_id2 = uuidv1();
+const company_id3 = uuidv1();
+const company_id4 = uuidv1();
+
+// unique employee id's
+const employee_id1 = uuidv1();
+const employee_id2 = uuidv1();
 
 // unique crew id's
-let crew_id1 = uuidv1();
-let crew_id2 = uuidv1();
-let crew_id3 = uuidv1();
-let crew_id4 = uuidv1();
+const crew_id1 = uuidv1();
+const crew_id2 = uuidv1();
+const crew_id3 = uuidv1();
+const crew_id4 = uuidv1();
 
 // unique job id's
-let job_id1 = uuidv1();
-let job_id2 = uuidv1();
-let job_id3 = uuidv1();
-let job_id4 = uuidv1();
+const job_id1 = uuidv1();
+const job_id2 = uuidv1();
+const job_id3 = uuidv1();
+const job_id4 = uuidv1();
 
 // unique job room id's
-let job_room_id1 = uuidv1();
-let job_room_id2 = uuidv1();
-let job_room_id3 = uuidv1();
-let job_room_id4 = uuidv1();
+const job_room_id1 = uuidv1();
+const job_room_id2 = uuidv1();
+const job_room_id3 = uuidv1();
+const job_room_id4 = uuidv1();
 
 // unique job room fixture id's
-let job_room_fixture_id1 = uuidv1();
-let job_room_fixture_id2 = uuidv1();
-let job_room_fixture_id3 = uuidv1();
-let job_room_fixture_id4 = uuidv1();
+const job_room_fixture_id1 = uuidv1();
+const job_room_fixture_id2 = uuidv1();
+const job_room_fixture_id3 = uuidv1();
+const job_room_fixture_id4 = uuidv1();
 
 // unique job room fixture task id's
-let job_room_fixture_task_id1 = uuidv1();
-let job_room_fixture_task_id2 = uuidv1();
-let job_room_fixture_task_id3 = uuidv1();
-let job_room_fixture_task_id4 = uuidv1();
+const job_room_fixture_task_id1 = uuidv1();
+const job_room_fixture_task_id2 = uuidv1();
+const job_room_fixture_task_id3 = uuidv1();
+const job_room_fixture_task_id4 = uuidv1();
 
 /**
  * We receive the dbmigrate dependency from dbmigrate initially.
@@ -160,22 +164,36 @@ exports.up = function(db, callback) {
       ),
 
       // employees
-      // db.insert.bind(db, 'employees',
-      //     [],
-      //     []
-      // ),
-      //
-      // // company employee roles
-      // db.insert.bind(db, 'company_employee_roles',
-      //     [],
-      //     []
-      // ),
-      //
+      db.insert.bind(db, 'employees', ['id', 'user_id'], [employee_id1, user_id4]),
+      db.insert.bind(db, 'employees', ['id', 'user_id'], [employee_id2, user_id2]),
+
+      // company employee roles
+      db.insert.bind(
+        db,
+        'company_employee_roles',
+        ['id', 'role_id', 'company_id', 'employee_id'],
+        [uuidv1(), 1, company_id1, employee_id1]
+      ),
+      db.insert.bind(
+        db,
+        'company_employee_roles',
+        ['id', 'role_id', 'company_id', 'employee_id'],
+        [uuidv1(), 2, company_id1, employee_id2]
+      ),
+
       // // crew employees
-      // db.insert.bind(db, 'crew_employees',
-      //     [],
-      //     []
-      // ),
+      db.insert.bind(
+        db,
+        'crew_employees',
+        ['id', 'company_id', 'employee_id', 'crew_id'],
+        [uuidv1(), company_id1, employee_id1, crew_id1]
+      ),
+      db.insert.bind(
+        db,
+        'crew_employees',
+        ['id', 'company_id', 'employee_id', 'crew_id'],
+        [uuidv1(), company_id1, employee_id2, crew_id1]
+      ),
 
       // properties
       db.insert.bind(db, 'properties', ['id', 'user_id', 'name_property'], [1, user_id1, "Brett's house"]),

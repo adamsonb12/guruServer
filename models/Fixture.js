@@ -2,10 +2,10 @@ const bookshelf = require('../config/bookshelf');
 
 bookshelf.plugin('registry');
 
-module.exports = bookshelf.model('Property', {
-  tableName: 'users',
+module.exports = bookshelf.model('Fixture', {
+  tableName: 'fixtures',
   defaults: {
-    name_property: '',
+    name_fixture: '',
   },
   hasTimeStamps: true,
 });

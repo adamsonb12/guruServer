@@ -2,6 +2,7 @@ const bookshelf = require('../config/bookshelf');
 const uuidv1 = require('uuid/v1');
 
 require('./Property');
+bookshelf.plugin('registry');
 
 module.exports = bookshelf.model('User', {
   tableName: 'users',
