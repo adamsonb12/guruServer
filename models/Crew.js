@@ -1,7 +1,9 @@
 const bookshelf = require('../config/bookshelf');
-const uuidv1 = require('uuidv1');
+const uuidv1 = require('uuid/v1');
 
-require('Company');
+require('./Company');
+require('./Job');
+require('./CrewEmployee');
 bookshelf.plugin('registry');
 
 module.exports = bookshelf.model('Crew', {
@@ -13,6 +15,12 @@ module.exports = bookshelf.model('Crew', {
   },
   company: function() {
     return this.belongsTo(Company);
+  },
+  jobs: function() {
+    return this.hasMany(Job);
+  },
+  crew_employees: function() {
+    return this.hasMany(CrewEmployee);
   },
   hasTimeStamps: true,
 });
