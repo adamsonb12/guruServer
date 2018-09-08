@@ -1,25 +1,13 @@
 module.exports = (req, res) => {
-    console.log('User deleted');
-
-    const bookshelf = require('../../bookshelf');
-
-    let User = bookshelf.Model.extend({
-        tableName: 'users'
-    });
+    const User = require('../../models/User');
 
     let user = new User(
         {
-            id: req.query.id
+            id: req.body.id
         }
     );
 
     res.send(user);
 
     user.destroy();
-        // .then((deletedUser) => {
-        //     res.send(deletedUser.toJSON());
-        // });
-        // .then(() => {
-        //     res.send(user.toJSON());
-        // });
 };
