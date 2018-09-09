@@ -2,14 +2,16 @@ const express = require('express');
 
 const routes = require('./controllers/routes');
 
-module.exports = () => {
-    const guru = express();
-    
-    guru.get('/', (req, res) => {
-        res.send({ go: 'the password is guest' });
-    });
+const User = require('./models/User');
 
-    routes(guru);
-    
-    guru.listen(5000);
-}
+module.exports = () => {
+  const guru = express();
+
+  guru.get('/', (req, res) => {
+    res.send({ go: 'the password is guest' });
+  });
+
+  routes(guru);
+
+  guru.listen(5000);
+};
