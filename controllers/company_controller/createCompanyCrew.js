@@ -1,7 +1,7 @@
 module.exports = (req, res) => {
     // receive data
-        // company id
-        // crew meta data
+    // company id
+    // crew meta data
     // validate data
     // write to db
     res.send({
@@ -11,7 +11,7 @@ module.exports = (req, res) => {
         crews: [
             {
                 crew_id: 'crew_id',
-                crew_members: []
+                crew_members: [],
             },
         ],
     });
