@@ -1,4 +1,4 @@
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     const User = require('../../models/User');
 
     let user = new User(
@@ -12,9 +12,8 @@ module.exports = (req, res) => {
         }
     );
 
-    user
-        .save(null, {method: 'insert'})
-        .then((createdUser) => {
-            res.send(createdUser);
-        });
+    res.send(
+        await user
+            .save(null, {method: 'insert'})
+    );
 };

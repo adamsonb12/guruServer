@@ -1,6 +1,4 @@
-module.exports = (req, res) => {
-    console.log('User updated');
-
+module.exports = async (req, res) => {
     const User = require('../../models/User');
 
     let user = new User(
@@ -15,9 +13,8 @@ module.exports = (req, res) => {
         }
     );
 
-    user
-        .save()
-        .then((updatedUser) => {
-            res.send(updatedUser);
-        });
+    res.send(
+        await user
+            .save()
+    );
 };

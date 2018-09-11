@@ -9,5 +9,6 @@ module.exports = (req, res) => {
 
     res.send(user);
 
+    // TODO figure out how to do a soft delete
     user.destroy();
 };

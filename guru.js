@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 const routes = require('./controllers/routes');
 
+const User = require('./models/User');
+
 module.exports = () => {
     const guru = express();
 
