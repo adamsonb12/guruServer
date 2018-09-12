@@ -14,9 +14,16 @@ const propertyCreateRoomFixture = require('./property_controller/createRoomFixtu
 const companyGetCompany = require('./company_controller/getCompany');
 const companyGetEmployee = require('./company_controller/createEmployee');
 const companyCreateCompany = require('./company_controller/createCompany');
-const companyCreateCompanyCrew = require('./company_controller/createCompanyCrew');
+
 const companyCreateCompanyRole = require('./company_controller/createCompanyRole');
+
+// crews
+const companyGetCompanyCrew = require('./company_controller/getCompanyCrew');
+const companyGetCompanyCrews = require('./company_controller/getCompanyCrews');
+
+const companyCreateCompanyCrew = require('./company_controller/createCompanyCrew');
 const companyCreateCompanyCrewMember = require('./company_controller/createCompanyCrewMember');
+
 const companyCreateEmployee = require('./company_controller/createEmployee');
 
 // users
@@ -35,10 +42,13 @@ module.exports = guru => {
     guru.post('/property/room/fixture', propertyCreateRoomFixture);
 
     // Company Routes
+    guru.post('/company', companyCreateCompany);
     guru.get('/company', companyGetCompany);
     guru.get('/employee', companyGetEmployee);
 
-    guru.post('/company', companyCreateCompany);
+    // Crews
+    guru.get('/crew', companyGetCompanyCrew);
+    guru.get('/crews', companyGetCompanyCrews);
 
     guru.post('/company/crew', companyCreateCompanyCrew);
     guru.post('/company/role', companyCreateCompanyRole);
