@@ -27,6 +27,11 @@ const companyCreateCompanyCrewMember = require('./company_controller/createCompa
 const companyCreateEmployee = require('./company_controller/createEmployee');
 
 // users
+const userCreateUser = require('./user_controller/createUser');
+const userGetAllUsers = require('./user_controller/getAllUsers');
+const userUpdateUser = require('./user_controller/updateUser');
+const userDeleteUser = require('./user_controller/deleteUser');
+const userGetOneOrMultipleUsers = require('./user_controller/getOneOrMultipleUsers');
 
 module.exports = guru => {
     // Job Routes
@@ -54,4 +59,11 @@ module.exports = guru => {
     guru.post('/company/role', companyCreateCompanyRole);
     guru.post('/company/crewmember', companyCreateCompanyCrewMember);
     guru.post('/company/employee', companyCreateEmployee);
+
+    // User Routes
+    guru.post('/user', userCreateUser);
+    guru.get('/user/get-all-users', userGetAllUsers);
+    guru.get('/user/get-one-or-multiple-users', userGetOneOrMultipleUsers);
+    guru.put('/user/update-user', userUpdateUser);
+    guru.delete('/user/delete-user', userDeleteUser);
 };

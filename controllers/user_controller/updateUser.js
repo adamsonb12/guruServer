@@ -3,6 +3,7 @@ module.exports = async (req, res) => {
 
     let user = new User(
         {
+            id: req.body.id,
             name_first: req.body.name_first,
             name_last: req.body.name_last,
             name_middle: req.body.name_middle,
@@ -14,6 +15,6 @@ module.exports = async (req, res) => {
 
     res.send(
         await user
-            .save(null, {method: 'insert'})
+            .save()
     );
 };
