@@ -1,13 +1,20 @@
-module.exports = (req, res) => {
-    // receive data
-    // company_address_id
-    // company meta data
-    // validate data
-    // write to db
-    res.send({
-        company_id: 'company_id',
-        company_address_id: 'company_address_id',
-        // Company roles? Probably not needed => debatable how we should return the roles and employee info in this
-        crews: [],
-    });
+const Company = require('../../models/Company');
+const uuidv1 = require('uuid/v1');
+
+module.exports = async (req, res, next) => {
+    const { name_company, shortname_company } = req.query;
+    if (name_company && shortname_company) {
+        try {
+            const newCompany = await new Company({
+                id: uuidv1(),
+                name_company: name_company,
+                shortname_company: shortname_company,
+            }).save(null, { method: 'insert' });
+            res.status(200).send({ company: newCompany });
+        } catch (err) {
+            next(err);
+        }
+    } else {
+        res.status(404).send('Error: Invalid Company Data');
+    }
 };

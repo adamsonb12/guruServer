@@ -1,7 +1,7 @@
 const Company = require('../../models/Company');
 
-module.exports = async (req, res) => {
-    if (req && req.query && req.query.company_id) {
+module.exports = async (req, res, next) => {
+    try {
         const company = await new Company({ id: req.query.company_id }).fetch({
             withRelated: ['company_address'],
         });
@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
         } else {
             res.status(404).send('Not Found: Invalid Company ID');
         }
-    } else {
-        res.status(404).send('Not Found: Invalid Company ID');
+    } catch (err) {
+        next(err);
     }
 };
