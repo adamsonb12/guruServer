@@ -6,6 +6,7 @@ const Company = require('./Company');
 const Employee = require('./Employee');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-soft-delete'));
 
 module.exports = bookshelf.model('CompanyEmployeeRole', {
     tableName: 'company_employee_roles',
@@ -21,4 +22,6 @@ module.exports = bookshelf.model('CompanyEmployeeRole', {
     employee: function() {
         return this.belongsTo(Employee);
     },
+    hasTimeStamps: true,
+    soft: true,
 });

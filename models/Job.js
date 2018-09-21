@@ -6,6 +6,7 @@ const User = require('./Property');
 const Property = require('./Crew');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-soft-delete'));
 
 module.exports = bookshelf.model('Job', {
     tableName: 'jobs',
@@ -28,4 +29,5 @@ module.exports = bookshelf.model('Job', {
         return this.belongsTo(Property);
     },
     hasTimeStamps: true,
+    soft: true,
 });

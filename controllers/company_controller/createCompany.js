@@ -9,6 +9,7 @@ module.exports = async (req, res, next) => {
                 id: uuidv1(),
                 name_company: name_company,
                 shortname_company: shortname_company,
+                created_at: new Date(),
             }).save(null, { method: 'insert' });
             res.status(200).send({ company: newCompany });
         } catch (err) {

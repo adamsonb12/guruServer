@@ -3,6 +3,7 @@ const bookshelf = require('../config/bookshelf');
 const Fixture = require('./Fixture');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-soft-delete'));
 
 module.exports = bookshelf.model('Task', {
     tableName: 'tasks',
@@ -13,4 +14,5 @@ module.exports = bookshelf.model('Task', {
         return this.belongsToMany(Fixture);
     },
     hasTimeStamps: true,
+    soft: true,
 });
