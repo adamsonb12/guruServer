@@ -11,11 +11,15 @@ const propertyCreateRoom = require('./property_controller/createRoom');
 const propertyCreateRoomFixture = require('./property_controller/createRoomFixture');
 
 // companies
-const companyGetCompany = require('./company_controller/getCompany');
-const companyGetAllCompanies = require('./company_controller/getAllCompanies');
+const companyGetCompany = require('./company_controller/company/getCompany');
+const companyGetAllCompanies = require('./company_controller/company/getAllCompanies');
+const companyCreateCompany = require('./company_controller/company/createCompany');
+const companyDeleteCompany = require('./company_controller/company/deleteCompany');
+
+// company address
+const companyGetCompanyAddress = require('./company_controller/company_address/getCompanyAddress');
 
 const companyGetEmployee = require('./company_controller/createEmployee');
-const companyCreateCompany = require('./company_controller/createCompany');
 
 const companyCreateCompanyRole = require('./company_controller/createCompanyRole');
 
@@ -52,8 +56,10 @@ module.exports = guru => {
     guru.get('/company', companyGetCompany);
     guru.get('/companies', companyGetAllCompanies);
     guru.post('/company', companyCreateCompany);
-    
-    
+    guru.delete('/company', companyDeleteCompany);
+
+    guru.get('./company_address', companyGetCompanyAddress);
+
     guru.get('/employee', companyGetEmployee);
 
     // Crews

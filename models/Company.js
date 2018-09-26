@@ -6,7 +6,8 @@ const Crew = require('./Crew');
 const CompanyEmployeeRole = require('./CompanyEmployeeRole');
 
 bookshelf.plugin('registry');
-bookshelf.plugin(require('bookshelf-soft-delete'));
+// bookshelf.plugin(require('bookshelf-soft-delete'));
+// bookshelf.plugin(require('bookshelf-cascade-delete'));
 
 module.exports = bookshelf.model('Company', {
     tableName: 'companies',
@@ -25,5 +26,7 @@ module.exports = bookshelf.model('Company', {
         return this.hasMany(CompanyEmployeeRole);
     },
     hasTimeStamps: true,
-    soft: true,
+    // soft: true
+}, {
+    // dependents: ['company_address'],
 });
