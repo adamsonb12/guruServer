@@ -6,7 +6,7 @@ const Company = require('./Company');
 const Employee = require('./Employee');
 
 bookshelf.plugin('registry');
-bookshelf.plugin(require('bookshelf-soft-delete'));
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('CompanyEmployeeRole', {
     tableName: 'company_employee_roles',

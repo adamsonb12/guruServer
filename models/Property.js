@@ -6,7 +6,7 @@ const PropertyAddress = require('./PropertyAddress');
 const PropertyRoom = require('./PropertyRoom');
 
 bookshelf.plugin('registry');
-bookshelf.plugin(require('bookshelf-soft-delete'));
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('Property', {
     tableName: 'users',

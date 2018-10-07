@@ -4,7 +4,7 @@ const Task = require('./Task');
 const PropertyRoom = require('./PropertyRoom');
 
 bookshelf.plugin('registry');
-bookshelf.plugin(require('bookshelf-soft-delete'));
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('Fixture', {
     tableName: 'fixtures',

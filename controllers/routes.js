@@ -58,7 +58,7 @@ module.exports = guru => {
     guru.post('/company', companyCreateCompany);
     guru.delete('/company', companyDeleteCompany);
 
-    guru.get('./company_address', companyGetCompanyAddress);
+    guru.get('/company_address', companyGetCompanyAddress);
 
     guru.get('/employee', companyGetEmployee);
 
