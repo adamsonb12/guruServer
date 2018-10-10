@@ -1,13 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const routes = require('./controllers/routes');
 
 module.exports = () => {
     const guru = express();
 
-    guru.use(bodyParser.json());
+    guru.use(express.json());
 
     guru.get('/', (req, res) => {
         res.send({ go: 'the password is guest' });
