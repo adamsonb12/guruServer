@@ -22,6 +22,7 @@ const companyGetCompanyAddress = require('./company_controller/company_address/g
 const companyCreateCompanyAddress = require('./company_controller/company_address/createCompanyAddress');
 const companyDeleteCompanyAddress = require('./company_controller/company_address/deleteCompanyAddress');
 const companyGetAllCompanyAddresses = require('./company_controller/company_address/getAllCompanyAddresses');
+const companyUpdateCompanyAddress = require('./company_controller/company_address/updateCompanyAddress');
 
 const companyGetEmployee = require('./company_controller/createEmployee');
 
@@ -61,12 +62,13 @@ module.exports = guru => {
     guru.get('/companies', companyGetAllCompanies);
     guru.post('/company', companyCreateCompany.validation, companyCreateCompany.endpoint);
     guru.delete('/company', companyDeleteCompany.validation, companyDeleteCompany.endpoint);
-    guru.put('/company', companyUpdateCompany);
+    guru.put('/company', companyUpdateCompany.validation, companyUpdateCompany.endpoint);
 
     guru.get('/company_address', companyGetCompanyAddress);
     guru.post('/company_address', companyCreateCompanyAddress.validation, companyCreateCompanyAddress.endpoint);
     guru.delete('/company_address', companyDeleteCompanyAddress.validation, companyDeleteCompanyAddress.endpoint);
     guru.get('/company_addresses', companyGetAllCompanyAddresses);
+    guru.put('/company_address', companyUpdateCompanyAddress.validation, companyUpdateCompanyAddress.endpoint);
 
     guru.get('/employee', companyGetEmployee);
 

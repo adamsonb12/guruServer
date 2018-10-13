@@ -11,12 +11,22 @@ module.exports = {
             errorMessage: 'name_company is required',
             trim: true,
             isString: true,
+            escape: true,
+            isLength: {
+                errorMessage: 'name_company should be at least 3 characters long',
+                options: { min: 3 },
+            },
         },
         shortname_company: {
             in: ['params', 'body'],
             errorMessage: 'shortname_company is required',
             trim: true,
             isString: true,
+            escape: true,
+            isLength: {
+                errorMessage: 'name_company should be at least 3 characters long',
+                options: { min: 3 },
+            },
         },
     }),
 
@@ -25,21 +35,17 @@ module.exports = {
         if (!res.headersSent) {
             const { name_company, shortname_company } = req.body;
             const date = new Date();
-            if (name_company && shortname_company) {
-                try {
-                    const newCompany = await new Company({
-                        id: uuidv1(),
-                        name_company: name_company,
-                        shortname_company: shortname_company,
-                        created_at: date,
-                        updated_at: date,
-                    }).save(null, { method: 'insert' });
-                    res.status(200).send({ company: newCompany });
-                } catch (err) {
-                    next(err);
-                }
-            } else {
-                res.status(404).send('Error: Invalid Company Data');
+            try {
+                const newCompany = await new Company({
+                    id: uuidv1(),
+                    name_company: name_company,
+                    shortname_company: shortname_company,
+                    created_at: date,
+                    updated_at: date,
+                }).save(null, { method: 'insert' });
+                res.status(200).send({ company: newCompany });
+            } catch (err) {
+                next(err);
             }
         }
     },

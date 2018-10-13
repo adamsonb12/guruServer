@@ -19,8 +19,9 @@ module.exports = {
     endpoint: async (req, res, next) => {
         checkValidations(req, res);
         if (!res.headersSent) {
+            const { company_address_id } = req.body;
             try {
-                await new CompanyAddress({ id: req.body.company_address_id }).destroy();
+                await new CompanyAddress({ id: company_address_id }).destroy();
                 res.status(200).send({ deleteAddress: 'success' });
             } catch (err) {
                 next(err);
