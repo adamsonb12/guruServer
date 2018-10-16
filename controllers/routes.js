@@ -17,25 +17,22 @@ const companyCreateCompany = require('./company_controller/company/createCompany
 const companyDeleteCompany = require('./company_controller/company/deleteCompany');
 const companyUpdateCompany = require('./company_controller/company/updateCompany');
 
-// company address
 const companyGetCompanyAddress = require('./company_controller/company_address/getCompanyAddress');
 const companyCreateCompanyAddress = require('./company_controller/company_address/createCompanyAddress');
 const companyDeleteCompanyAddress = require('./company_controller/company_address/deleteCompanyAddress');
 const companyGetAllCompanyAddresses = require('./company_controller/company_address/getAllCompanyAddresses');
 const companyUpdateCompanyAddress = require('./company_controller/company_address/updateCompanyAddress');
 
-const companyGetEmployee = require('./company_controller/createEmployee');
+const companyGetEmployee = require('./company_controller/employee/getEmployee');
+const companyGetAllEmployees = require('./company_controller/employee/getAllEmployees');
 
 const companyCreateCompanyRole = require('./company_controller/createCompanyRole');
 
-// crews
 const companyGetCompanyCrew = require('./company_controller/getCompanyCrew');
 const companyGetCompanyCrews = require('./company_controller/getCompanyCrews');
 
 const companyCreateCompanyCrew = require('./company_controller/createCompanyCrew');
 const companyCreateCompanyCrewMember = require('./company_controller/createCompanyCrewMember');
-
-const companyCreateEmployee = require('./company_controller/createEmployee');
 
 // users
 const userCreateUser = require('./user_controller/createUser');
@@ -71,6 +68,7 @@ module.exports = guru => {
     guru.put('/company_address', companyUpdateCompanyAddress.validation, companyUpdateCompanyAddress.endpoint);
 
     guru.get('/employee', companyGetEmployee);
+    guru.get('/employees', companyGetAllEmployees);
 
     // Crews
     guru.get('/crew', companyGetCompanyCrew);
@@ -79,7 +77,6 @@ module.exports = guru => {
     guru.post('/company/crew', companyCreateCompanyCrew);
     guru.post('/company/role', companyCreateCompanyRole);
     guru.post('/company/crewmember', companyCreateCompanyCrewMember);
-    guru.post('/company/employee', companyCreateEmployee);
 
     // User Routes
     guru.post('/user', userCreateUser);
