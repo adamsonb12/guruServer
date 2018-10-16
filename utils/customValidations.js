@@ -2,6 +2,7 @@ const { body, validationResult } = require('express-validator/check');
 
 const Company = require('../models/Company');
 const CompanyAddress = require('../models/CompanyAddress');
+const User = require('../models/User');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -33,6 +34,13 @@ module.exports = {
             }
         } else {
             throw new Error(`Invalid input type: Expected a valid int. Recieved ${typeof id}: ${id}`);
+        }
+    },
+
+    schemaValidUser: async id => {
+        const user = await new User({ id: id }).fetch();
+        if (!user) {
+            throw new Error('Invalid User ID');
         }
     },
 };
