@@ -26,6 +26,8 @@ const companyUpdateCompanyAddress = require('./company_controller/company_addres
 const companyGetEmployee = require('./company_controller/employee/getEmployee');
 const companyGetAllEmployees = require('./company_controller/employee/getAllEmployees');
 const companyCreateEmployee = require('./company_controller/employee/createEmployee');
+const companyDeleteEmployee = require('./company_controller/employee/deleteEmployee');
+const companyUpdateEmployee = require('./company_controller/employee/updateEmployee');
 
 const companyCreateCompanyRole = require('./company_controller/createCompanyRole');
 
@@ -71,6 +73,8 @@ module.exports = guru => {
     guru.get('/employee', companyGetEmployee);
     guru.get('/employees', companyGetAllEmployees);
     guru.post('/employee', companyCreateEmployee.validation, companyCreateEmployee.endpoint);
+    guru.delete('/employee', companyDeleteEmployee.validation, companyDeleteEmployee.endpoint);
+    guru.put('/employee', companyUpdateEmployee.validation, companyUpdateEmployee.endpoint);
 
     // Crews
     guru.get('/crew', companyGetCompanyCrew);

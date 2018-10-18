@@ -2,6 +2,7 @@ const { body, validationResult } = require('express-validator/check');
 
 const Company = require('../models/Company');
 const CompanyAddress = require('../models/CompanyAddress');
+const Employee = require('../models/Employee');
 const User = require('../models/User');
 
 module.exports = {
@@ -41,6 +42,13 @@ module.exports = {
         const user = await new User({ id: id }).fetch();
         if (!user) {
             throw new Error('Invalid User ID');
+        }
+    },
+
+    schemaValidEmployee: async id => {
+        const employee = await new Employee({ id: id }).fetch();
+        if (!employee) {
+            throw new Error('Invalid Employee ID');
         }
     },
 };
