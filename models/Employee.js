@@ -3,7 +3,9 @@ const uuidv1 = require('uuid/v1');
 
 const User = require('./User');
 const CompanyEmployeeRole = require('./CompanyEmployeeRole');
+
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('Employee', {
     tableName: 'employees',
@@ -18,4 +20,5 @@ module.exports = bookshelf.model('Employee', {
         return this.hasMany(CompanyEmployeeRole);
     },
     hasTimeStamps: true,
+    soft: true,
 });

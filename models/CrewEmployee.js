@@ -5,6 +5,7 @@ const Employee = require('./Employee');
 const Crew = require('./Crew');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('CrewEmployee', {
     tableName: 'crew_employees',
@@ -17,4 +18,6 @@ module.exports = bookshelf.model('CrewEmployee', {
     crew: function() {
         return this.belongsTo(Crew);
     },
+    hasTimeStamps: true,
+    soft: true,
 });

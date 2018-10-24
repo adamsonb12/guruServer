@@ -3,6 +3,7 @@ const bookshelf = require('../config/bookshelf');
 const Company = require('./Company');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('CompanyAddress', {
     tableName: 'company_addresses',
@@ -19,4 +20,5 @@ module.exports = bookshelf.model('CompanyAddress', {
         return this.belongsTo(Company);
     },
     hasTimeStamps: true,
+    soft: true,
 });

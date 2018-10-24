@@ -6,6 +6,7 @@ const PropertyAddress = require('./PropertyAddress');
 const PropertyRoom = require('./PropertyRoom');
 
 bookshelf.plugin('registry');
+bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('Property', {
     tableName: 'users',
@@ -25,4 +26,5 @@ module.exports = bookshelf.model('Property', {
         return this.hasMany(PropertyRoom);
     },
     hasTimeStamps: true,
+    soft: true,
 });

@@ -11,11 +11,23 @@ const propertyCreateRoom = require('./property_controller/createRoom');
 const propertyCreateRoomFixture = require('./property_controller/createRoomFixture');
 
 // companies
-const companyCreateCompany = require('./company_controller/createCompany');
-const companyCreateCompanyCrew = require('./company_controller/createCompanyCrew');
-const companyCreateCompanyRole = require('./company_controller/createCompanyRole');
-const companyCreateCompanyCrewMember = require('./company_controller/createCompanyCrewMember');
-const companyCreateEmployee = require('./company_controller/createEmployee');
+const companyGetCompany = require('./company_controller/company/getCompany');
+const companyGetAllCompanies = require('./company_controller/company/getAllCompanies');
+const companyCreateCompany = require('./company_controller/company/createCompany');
+const companyDeleteCompany = require('./company_controller/company/deleteCompany');
+const companyUpdateCompany = require('./company_controller/company/updateCompany');
+
+const companyGetCompanyAddress = require('./company_controller/company_address/getCompanyAddress');
+const companyCreateCompanyAddress = require('./company_controller/company_address/createCompanyAddress');
+const companyDeleteCompanyAddress = require('./company_controller/company_address/deleteCompanyAddress');
+const companyGetAllCompanyAddresses = require('./company_controller/company_address/getAllCompanyAddresses');
+const companyUpdateCompanyAddress = require('./company_controller/company_address/updateCompanyAddress');
+
+const companyGetEmployee = require('./company_controller/employee/getEmployee');
+const companyGetAllEmployees = require('./company_controller/employee/getAllEmployees');
+const companyCreateEmployee = require('./company_controller/employee/createEmployee');
+const companyDeleteEmployee = require('./company_controller/employee/deleteEmployee');
+const companyUpdateEmployee = require('./company_controller/employee/updateEmployee');
 
 // users
 const userCreateUser = require('./user_controller/createUser');
@@ -38,11 +50,23 @@ module.exports = guru => {
     guru.post('/property/room/fixture', propertyCreateRoomFixture);
 
     // Company Routes
-    guru.post('/company', companyCreateCompany);
-    guru.post('/company/crew', companyCreateCompanyCrew);
-    guru.post('/company/role', companyCreateCompanyRole);
-    guru.post('/company/crewmember', companyCreateCompanyCrewMember);
-    guru.post('/company/employee', companyCreateEmployee);
+    guru.get('/company', companyGetCompany);
+    guru.get('/companies', companyGetAllCompanies);
+    guru.post('/company', companyCreateCompany.validation, companyCreateCompany.endpoint);
+    guru.delete('/company', companyDeleteCompany.validation, companyDeleteCompany.endpoint);
+    guru.put('/company', companyUpdateCompany.validation, companyUpdateCompany.endpoint);
+
+    guru.get('/company_address', companyGetCompanyAddress);
+    guru.post('/company_address', companyCreateCompanyAddress.validation, companyCreateCompanyAddress.endpoint);
+    guru.delete('/company_address', companyDeleteCompanyAddress.validation, companyDeleteCompanyAddress.endpoint);
+    guru.get('/company_addresses', companyGetAllCompanyAddresses);
+    guru.put('/company_address', companyUpdateCompanyAddress.validation, companyUpdateCompanyAddress.endpoint);
+
+    guru.get('/employee', companyGetEmployee);
+    guru.get('/employees', companyGetAllEmployees);
+    guru.post('/employee', companyCreateEmployee.validation, companyCreateEmployee.endpoint);
+    guru.delete('/employee', companyDeleteEmployee.validation, companyDeleteEmployee.endpoint);
+    guru.put('/employee', companyUpdateEmployee.validation, companyUpdateEmployee.endpoint);
 
     // User Routes
     guru.post('/user', userCreateUser);
