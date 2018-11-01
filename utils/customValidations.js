@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator/check');
 const Company = require('../models/Company');
 const CompanyAddress = require('../models/CompanyAddress');
 const Crew = require('../models/Crew');
+const CrewEmployee = require('../models/CrewEmployee');
 const Employee = require('../models/Employee');
 const User = require('../models/User');
 
@@ -57,6 +58,13 @@ module.exports = {
         const crew = await new Crew({ id: id }).fetch();
         if (!crew) {
             throw new Error('Invalid Company Crew Id');
+        }
+    },
+
+    validCrewEmployee: async id => {
+        const crewEmployee = await new CrewEmployee({ id: id }).fetch();
+        if (!crewEmployee) {
+            throw new Error('Invalid Company Crew Employee Id');
         }
     },
 };
