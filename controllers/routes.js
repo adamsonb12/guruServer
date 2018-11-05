@@ -34,6 +34,8 @@ const companyGetCompanyCrews = require('./company_controller/crew/getCompanyCrew
 const companyCreateCrew = require('./company_controller/crew/createCrew');
 const companyDeleteCrew = require('./company_controller/crew/deleteCrew');
 const companyUpdateCrew = require('./company_controller/crew/updateCrew');
+const companyAddEmployeeToCrew = require('./company_controller/crew/addEmployeeToCrew');
+const companyRemoveEmployeeFromCrew = require('./company_controller/crew/removeEmployeeFromCrew');
 
 // users
 const userCreateUser = require('./user_controller/createUser');
@@ -79,6 +81,8 @@ module.exports = guru => {
     guru.delete('/crew', companyDeleteCrew.validation, companyDeleteCrew.endpoint);
     guru.post('/crew', companyCreateCrew.validation, companyCreateCrew.endpoint);
     guru.put('/crew', companyUpdateCrew.validation, companyUpdateCrew.endpoint);
+    guru.post('/crew_employee', companyAddEmployeeToCrew.validation, companyAddEmployeeToCrew.endpoint);
+    guru.delete('/crew_employee', companyRemoveEmployeeFromCrew.validation, companyRemoveEmployeeFromCrew.endpoint);
 
     // User Routes
     guru.post('/user', userCreateUser);
