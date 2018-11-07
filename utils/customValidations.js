@@ -67,4 +67,11 @@ module.exports = {
             throw new Error('Invalid Company Crew Employee Id');
         }
     },
+
+    validEmail: async email => {
+        const user = await new User({ email: email }).fetch();
+        if (user) {
+            throw new Error('Email already in use');
+        }
+    },
 };

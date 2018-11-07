@@ -42,7 +42,7 @@ const userCreateUser = require('./user_controller/createUser');
 const userGetAllUsers = require('./user_controller/getAllUsers');
 const userUpdateUser = require('./user_controller/updateUser');
 const userDeleteUser = require('./user_controller/deleteUser');
-const userGetOneOrMultipleUsers = require('./user_controller/getOneOrMultipleUsers');
+const userGetUser = require('./user_controller/getUser');
 
 module.exports = guru => {
     // Job Routes
@@ -85,9 +85,9 @@ module.exports = guru => {
     guru.delete('/crew_employee', companyRemoveEmployeeFromCrew.validation, companyRemoveEmployeeFromCrew.endpoint);
 
     // User Routes
-    guru.post('/user', userCreateUser);
-    guru.get('/user/get-all-users', userGetAllUsers);
-    guru.get('/user/get-one-or-multiple-users', userGetOneOrMultipleUsers);
-    guru.put('/user/update-user', userUpdateUser);
-    guru.delete('/user/delete-user', userDeleteUser);
+    guru.post('/user', userCreateUser.validation, userCreateUser.endpoint);
+    guru.get('/user', userGetUser);
+    guru.get('/users', userGetAllUsers);
+    guru.put('/user', userUpdateUser.validation, userUpdateUser.endpoint);
+    guru.delete('/user', userDeleteUser.validation, userDeleteUser.endpoint);
 };
