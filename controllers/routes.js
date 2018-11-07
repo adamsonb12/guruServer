@@ -5,6 +5,7 @@ const jobCreateJobRoomFixture = require('./jobs_controller/createJobRoomFixture'
 const jobCreateJobRoomFixtureCleaningTask = require('./jobs_controller/createJobRoomFixtureCleaningTask');
 
 // properties
+const propertyGetProperty = require('./property_controller/getProperty');
 const propertyCreateProperty = require('./property_controller/createProperty');
 const propertyCreatePropertyAddress = require('./property_controller/createPropertyAddress');
 const propertyCreateRoom = require('./property_controller/createRoom');
@@ -52,6 +53,7 @@ module.exports = guru => {
     guru.post('/job/room/fixture/cleaningtask', jobCreateJobRoomFixtureCleaningTask);
 
     // Property Routes
+    guru.get('/property', propertyGetProperty);
     guru.post('/property', propertyCreateProperty);
     guru.post('/property/address', propertyCreatePropertyAddress);
     guru.post('/property/room', propertyCreateRoom);
