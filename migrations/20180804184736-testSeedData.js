@@ -17,12 +17,6 @@ const user_id2 = uuidv1();
 const user_id3 = uuidv1();
 const user_id4 = uuidv1();
 
-// unique property id's
-// let property_id1 = uuidv1();
-// let property_id2 = uuidv1();
-// let property_id3 = uuidv1();
-// let property_id4 = uuidv1();
-
 // unique property address id's
 const property_address_id1 = uuidv1();
 const property_address_id2 = uuidv1();
@@ -80,6 +74,12 @@ const job_room_fixture_task_id1 = uuidv1();
 const job_room_fixture_task_id2 = uuidv1();
 const job_room_fixture_task_id3 = uuidv1();
 const job_room_fixture_task_id4 = uuidv1();
+
+// ids for properties
+const property_id_1 = uuidv1();
+const property_id_2 = uuidv1();
+const property_id_3 = uuidv1();
+const property_id_4 = uuidv1();
 
 const defaultTimeStamp = new Date();
 
@@ -301,25 +301,25 @@ exports.up = function(db, callback) {
                 db,
                 'properties',
                 ['id', 'user_id', 'name_property', 'created_at'],
-                [1, user_id1, 'Brett\'s house', defaultTimeStamp]
+                [property_id_1, user_id1, 'Brett\'s house', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'properties',
                 ['id', 'user_id', 'name_property', 'created_at'],
-                [2, user_id2, 'Dal\'s house', defaultTimeStamp]
+                [property_id_2, user_id2, 'Dal\'s house', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'properties',
                 ['id', 'user_id', 'name_property', 'created_at'],
-                [3, user_id3, 'Neal\'s house', defaultTimeStamp]
+                [property_id_3, user_id3, 'Neal\'s house', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'properties',
                 ['id', 'user_id', 'name_property', 'created_at'],
-                [4, user_id4, 'Brett\'s second house', defaultTimeStamp]
+                [property_id_4, user_id1, 'Brett\'s second house', defaultTimeStamp]
             ),
 
             // property addresses
@@ -337,7 +337,7 @@ exports.up = function(db, callback) {
                     'zipcode',
                     'created_at',
                 ],
-                [property_address_id1, 1, '1234 Bretticus St.', null, null, 'Flowers', 'OH', '12345', defaultTimeStamp]
+                [property_address_id1, property_id_1, '1234 Bretticus St.', null, null, 'Flowers', 'OH', '12345', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
@@ -353,7 +353,7 @@ exports.up = function(db, callback) {
                     'zipcode',
                     'created_at',
                 ],
-                [property_address_id2, 2, '1234 Dalicus St.', null, null, 'Trees', 'AZ', '12345', defaultTimeStamp]
+                [property_address_id2, property_id_2, '1234 Dalicus St.', null, null, 'Trees', 'AZ', '12345', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
@@ -369,7 +369,7 @@ exports.up = function(db, callback) {
                     'zipcode',
                     'created_at',
                 ],
-                [property_address_id3, 3, '1234 Nealicus St.', null, null, 'Birds', 'FL', '12345', defaultTimeStamp]
+                [property_address_id3, property_id_3, '1234 Nealicus St.', null, null, 'Birds', 'FL', '12345', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
@@ -385,7 +385,7 @@ exports.up = function(db, callback) {
                     'zipcode',
                     'created_at',
                 ],
-                [property_address_id4, 4, '1234 Bretticus2 St.', null, null, 'Whales', 'OR', '12345', defaultTimeStamp]
+                [property_address_id4, property_id_4, '1234 Bretticus2 St.', null, null, 'Whales', 'OR', '12345', defaultTimeStamp]
             ),
 
             // property rooms
@@ -393,25 +393,25 @@ exports.up = function(db, callback) {
                 db,
                 'property_rooms',
                 ['id', 'property_id', 'name_property_room', 'created_at'],
-                [1, 1, 'Living room', defaultTimeStamp]
+                [1, property_id_1, 'Living room', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'property_rooms',
                 ['id', 'property_id', 'name_property_room', 'created_at'],
-                [2, 2, 'Bedroom', defaultTimeStamp]
+                [2, property_id_2, 'Bedroom', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'property_rooms',
                 ['id', 'property_id', 'name_property_room', 'created_at'],
-                [3, 3, 'Kitchen', defaultTimeStamp]
+                [3, property_id_3, 'Kitchen', defaultTimeStamp]
             ),
             db.insert.bind(
                 db,
                 'property_rooms',
                 ['id', 'property_id', 'name_property_room', 'created_at'],
-                [4, 4, 'Bathroom', defaultTimeStamp]
+                [4, property_id_4, 'Bathroom', defaultTimeStamp]
             ),
 
             // property room fixtures
@@ -461,7 +461,7 @@ exports.up = function(db, callback) {
                     job_id1,
                     crew_id1,
                     user_id1,
-                    1,
+                    property_id_1,
                     '2018-09-25',
                     '2018-09-26',
                     2,
@@ -491,7 +491,7 @@ exports.up = function(db, callback) {
                     job_id2,
                     crew_id2,
                     user_id2,
-                    2,
+                    property_id_2,
                     '2018-10-20',
                     '2018-10-21',
                     1,
@@ -521,7 +521,7 @@ exports.up = function(db, callback) {
                     job_id3,
                     crew_id3,
                     user_id3,
-                    3,
+                    property_id_3,
                     '2019-01-05',
                     '2019-01-06',
                     3,
@@ -550,8 +550,8 @@ exports.up = function(db, callback) {
                 [
                     job_id4,
                     crew_id4,
-                    user_id4,
-                    4,
+                    user_id1,
+                    property_id_4,
                     '2019-02-17',
                     '2019-02-18',
                     4,
@@ -567,25 +567,25 @@ exports.up = function(db, callback) {
                 db,
                 'job_rooms',
                 ['id', 'job_id', 'property_room_id', 'property_id'],
-                [job_room_id1, job_id1, 1, 1]
+                [job_room_id1, job_id1, 1, property_id_1]
             ),
             db.insert.bind(
                 db,
                 'job_rooms',
                 ['id', 'job_id', 'property_room_id', 'property_id'],
-                [job_room_id2, job_id2, 2, 2]
+                [job_room_id2, job_id2, 2, property_id_2]
             ),
             db.insert.bind(
                 db,
                 'job_rooms',
                 ['id', 'job_id', 'property_room_id', 'property_id'],
-                [job_room_id3, job_id3, 3, 3]
+                [job_room_id3, job_id3, 3, property_id_3]
             ),
             db.insert.bind(
                 db,
                 'job_rooms',
                 ['id', 'job_id', 'property_room_id', 'property_id'],
-                [job_room_id4, job_id4, 4, 4]
+                [job_room_id4, job_id4, 4, property_id_4]
             ),
 
             // job room fixtures

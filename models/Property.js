@@ -9,7 +9,7 @@ bookshelf.plugin('registry');
 bookshelf.plugin(require('bookshelf-cascade-soft-delete'));
 
 module.exports = bookshelf.model('Property', {
-    tableName: 'users',
+    tableName: 'properties',
     defaults: {
         name_property: '',
     },
