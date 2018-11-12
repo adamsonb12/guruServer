@@ -74,7 +74,7 @@ exports.up = function(db, callback) {
                 },
             }),
             db.createTable.bind(db, 'properties', {
-                id: { type: dataType.INTEGER, primaryKey: true },
+                id: { type: dataType.STRING, primaryKey: true },
                 user_id: {
                     type: dataType.STRING,
                     unsigned: true,
@@ -143,7 +143,7 @@ exports.up = function(db, callback) {
             db.createTable.bind(db, 'property_addresses', {
                 id: { type: dataType.STRING, primaryKey: true },
                 property_id: {
-                    type: dataType.INTEGER,
+                    type: dataType.STRING,
                     unsigned: true,
                     notNull: true,
                     foreignKey: {
@@ -210,7 +210,7 @@ exports.up = function(db, callback) {
             db.createTable.bind(db, 'property_rooms', {
                 id: { type: dataType.INTEGER, primaryKey: true, autoIncrement: true },
                 property_id: {
-                    type: dataType.INTEGER,
+                    type: dataType.STRING,
                     unsigned: true,
                     notNull: true,
                     foreignKey: {
@@ -254,7 +254,7 @@ exports.up = function(db, callback) {
                     },
                 },
                 property_id: {
-                    type: dataType.INTEGER,
+                    type: dataType.STRING,
                     notNull: true,
                     foreignKey: {
                         name: 'job_property_fk',
@@ -337,7 +337,7 @@ exports.up = function(db, callback) {
                 id: { type: dataType.STRING, primaryKey: true },
                 job_id: { type: dataType.STRING },
                 property_room_id: { type: dataType.INTEGER },
-                property_id: { type: dataType.INTEGER },
+                property_id: { type: dataType.STRING },
             }),
             db.addForeignKey.bind(
                 db,

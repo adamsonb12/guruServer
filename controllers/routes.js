@@ -4,13 +4,6 @@ const jobCreateJobRoom = require('./jobs_controller/createJobRoom');
 const jobCreateJobRoomFixture = require('./jobs_controller/createJobRoomFixture');
 const jobCreateJobRoomFixtureCleaningTask = require('./jobs_controller/createJobRoomFixtureCleaningTask');
 
-// properties
-const propertyGetProperty = require('./property_controller/getProperty');
-const propertyCreateProperty = require('./property_controller/createProperty');
-const propertyCreatePropertyAddress = require('./property_controller/createPropertyAddress');
-const propertyCreateRoom = require('./property_controller/createRoom');
-const propertyCreateRoomFixture = require('./property_controller/createRoomFixture');
-
 // companies
 const companyGetCompany = require('./company_controller/company/getCompany');
 const companyGetAllCompanies = require('./company_controller/company/getAllCompanies');
@@ -45,19 +38,19 @@ const userUpdateUser = require('./user_controller/updateUser');
 const userDeleteUser = require('./user_controller/deleteUser');
 const userGetUser = require('./user_controller/getUser');
 
+// properties
+const propertyGetProperty = require('./property_controller/property/getProperty');
+const propertyGetAllProperties = require('./property_controller/property/getAllProperties');
+const propertyCreateProperty = require('./property_controller/property/createProperty');
+const propertyUpdateProperty = require('./property_controller/property/updateProperty');
+const propertyDeleteProperty = require('./property_controller/property/deleteProperty');
+
 module.exports = guru => {
     // Job Routes
     guru.post('/job', jobCreateJob);
     guru.post('/job/room', jobCreateJobRoom);
     guru.post('/job/room/fixture', jobCreateJobRoomFixture);
     guru.post('/job/room/fixture/cleaningtask', jobCreateJobRoomFixtureCleaningTask);
-
-    // Property Routes
-    guru.get('/property', propertyGetProperty);
-    guru.post('/property', propertyCreateProperty);
-    guru.post('/property/address', propertyCreatePropertyAddress);
-    guru.post('/property/room', propertyCreateRoom);
-    guru.post('/property/room/fixture', propertyCreateRoomFixture);
 
     // Company Routes
     guru.get('/company', companyGetCompany);
@@ -92,4 +85,11 @@ module.exports = guru => {
     guru.get('/users', userGetAllUsers);
     guru.put('/user', userUpdateUser.validation, userUpdateUser.endpoint);
     guru.delete('/user', userDeleteUser.validation, userDeleteUser.endpoint);
+
+    // Property Routes
+    guru.get('/property', propertyGetProperty);
+    guru.get('/properties', propertyGetAllProperties);
+    guru.post('/property', propertyCreateProperty.validation, propertyCreateProperty.endpoint);
+    guru.put('/property', propertyUpdateProperty.validation, propertyUpdateProperty.endpoint);
+    guru.delete('/property', propertyDeleteProperty.validation, propertyDeleteProperty.endpoint);
 };

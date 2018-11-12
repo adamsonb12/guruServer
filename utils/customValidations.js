@@ -6,6 +6,7 @@ const Crew = require('../models/Crew');
 const CrewEmployee = require('../models/CrewEmployee');
 const Employee = require('../models/Employee');
 const User = require('../models/User');
+const Property = require('../models/Property');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -72,6 +73,13 @@ module.exports = {
         const user = await new User({ email: email }).fetch();
         if (user) {
             throw new Error('Email already in use');
+        }
+    },
+
+    validProperty: async id => {
+        const property = await new Property({ id: id }).fetch();
+        if (!property) {
+            throw new Error('Invalid Property Id');
         }
     },
 };
