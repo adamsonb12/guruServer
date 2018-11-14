@@ -1,17 +1,26 @@
 const { checkSchema } = require('express-validator/check');
 
-const CompanyAddress = require('../../../models/CompanyAddress');
-const { checkValidations, schemaValidCompany } = require('../../../utils/customValidations');
+const PropertyAddress = require('../../../models/PropertyAddress');
+const { checkValidations, validPropertyAddress } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        company_id: {
+        property_address_id: {
+            in: ['parmas', 'body'],
+            isString: true,
+            escape: true,
+            trim: true,
+            errorMessage: 'property_address_id is required',
             custom: {
-                options: schemaValidCompany,
+                options: validPropertyAddress,
             },
         },
-        address_line_1: {
+        options: {
             in: ['params', 'body'],
+            errorMessage: 'The options object is required',
+        },
+        'options.address_line_1': {
+            optional: true,
             errorMessage: 'address_line_1 is required',
             trim: true,
             isString: true,
@@ -21,8 +30,7 @@ module.exports = {
                 options: { min: 3 },
             },
         },
-        address_line_2: {
-            in: ['params', 'body'],
+        'options.address_line_2': {
             optional: true,
             errorMessage: 'address_line_2 must be a valid string',
             trim: true,
@@ -33,8 +41,7 @@ module.exports = {
                 options: { min: 2 },
             },
         },
-        address_line_3: {
-            in: ['params', 'body'],
+        'options.address_line_3': {
             optional: true,
             errorMessage: 'address_line_3 must be a valid string',
             trim: true,
@@ -45,8 +52,8 @@ module.exports = {
                 options: { min: 1 },
             },
         },
-        name_city: {
-            in: ['params', 'body'],
+        'options.name_city': {
+            optional: true,
             errorMessage: 'name_city is required',
             trim: true,
             isString: true,
@@ -56,8 +63,8 @@ module.exports = {
                 options: { min: 3 },
             },
         },
-        state: {
-            in: ['params', 'body'],
+        'options.state': {
+            optional: true,
             errorMessage: 'state is required',
             trim: true,
             isString: true,
@@ -67,8 +74,8 @@ module.exports = {
                 options: { min: 2 },
             },
         },
-        zipcode: {
-            in: ['params', 'body'],
+        'options.zipcode': {
+            optional: true,
             errorMessage: 'zipcode is required',
             trim: true,
             isString: true,
@@ -79,21 +86,13 @@ module.exports = {
     endpoint: async (req, res, next) => {
         checkValidations(req, res);
         if (!res.headersSent) {
-            const { company_id, address_line_1, address_line_2, address_line_3, name_city, state, zipcode } = req.body;
-            const date = new Date();
             try {
-                const newAddress = await new CompanyAddress({
-                    company_id,
-                    address_line_1,
-                    address_line_2,
-                    address_line_3,
-                    name_city,
-                    state,
-                    zipcode,
-                    created_at: date,
-                    updated_at: date,
-                }).save(null, { method: 'insert' });
-                res.status(200).send({ address: newAddress });
+                const { property_address_id, options } = req.body;
+                options.updated_at = new Date();
+                const propertyAddress = await new PropertyAddress({ id: property_address_id }).save(options, {
+                    patch: true,
+                });
+                res.status(200).send({ propertyAddress: propertyAddress });
             } catch (err) {
                 next(err);
             }

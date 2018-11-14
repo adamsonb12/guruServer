@@ -45,6 +45,11 @@ const propertyCreateProperty = require('./property_controller/property/createPro
 const propertyUpdateProperty = require('./property_controller/property/updateProperty');
 const propertyDeleteProperty = require('./property_controller/property/deleteProperty');
 
+const propertyGetPropertyAddress = require('./property_controller/property_address/getPropertyAddress');
+const propertyCreatePropertyAddress = require('./property_controller/property_address/createPropertyAddress');
+const proeprtyDeletePropertyAddress = require('./property_controller/property_address/deletePropertyAddress');
+const propertyUpdateProeprtyAddress = require('./property_controller/property_address/updatePropertyAddress');
+
 module.exports = guru => {
     // Job Routes
     guru.post('/job', jobCreateJob);
@@ -92,4 +97,9 @@ module.exports = guru => {
     guru.post('/property', propertyCreateProperty.validation, propertyCreateProperty.endpoint);
     guru.put('/property', propertyUpdateProperty.validation, propertyUpdateProperty.endpoint);
     guru.delete('/property', propertyDeleteProperty.validation, propertyDeleteProperty.endpoint);
+
+    guru.get('/property_address', propertyGetPropertyAddress);
+    guru.post('/property_address', propertyCreatePropertyAddress.validation, propertyCreatePropertyAddress.endpoint);
+    guru.delete('/property_address', proeprtyDeletePropertyAddress.validation, proeprtyDeletePropertyAddress.endpoint);
+    guru.put('/property_address', propertyUpdateProeprtyAddress.validation, propertyUpdateProeprtyAddress.endpoint);
 };
