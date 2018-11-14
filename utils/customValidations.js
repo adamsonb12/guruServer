@@ -7,6 +7,7 @@ const CrewEmployee = require('../models/CrewEmployee');
 const Employee = require('../models/Employee');
 const User = require('../models/User');
 const Property = require('../models/Property');
+const PropertyAddress = require('../models/PropertyAddress');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -80,6 +81,13 @@ module.exports = {
         const property = await new Property({ id: id }).fetch();
         if (!property) {
             throw new Error('Invalid Property Id');
+        }
+    },
+
+    validPropertyAddress: async id => {
+        const propertyAddress = await new PropertyAddress({ id: id }).fetch();
+        if (!propertyAddress) {
+            throw new Error('Invalid Property Address Id');
         }
     },
 };

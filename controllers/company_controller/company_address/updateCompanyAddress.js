@@ -69,7 +69,8 @@ module.exports = {
             optional: true,
             errorMessage: 'zipcode is required',
             trim: true,
-            isPostalCode: true,
+            isString: true,
+            escape: true,
         },
     }),
 

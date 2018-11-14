@@ -1,13 +1,13 @@
 const { checkSchema } = require('express-validator/check');
 
-const CompanyAddress = require('../../../models/CompanyAddress');
-const { checkValidations, schemaValidCompany } = require('../../../utils/customValidations');
+const PropertyAddress = require('../../../models/PropertyAddress');
+const { checkValidations, validProperty } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        company_id: {
+        property_id: {
             custom: {
-                options: schemaValidCompany,
+                options: validProperty,
             },
         },
         address_line_1: {
@@ -79,11 +79,11 @@ module.exports = {
     endpoint: async (req, res, next) => {
         checkValidations(req, res);
         if (!res.headersSent) {
-            const { company_id, address_line_1, address_line_2, address_line_3, name_city, state, zipcode } = req.body;
+            const { property_id, address_line_1, address_line_2, address_line_3, name_city, state, zipcode } = req.body;
             const date = new Date();
             try {
-                const newAddress = await new CompanyAddress({
-                    company_id,
+                const newAddress = await new PropertyAddress({
+                    property_id,
                     address_line_1,
                     address_line_2,
                     address_line_3,
