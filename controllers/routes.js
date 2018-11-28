@@ -50,6 +50,12 @@ const propertyCreatePropertyAddress = require('./property_controller/property_ad
 const proeprtyDeletePropertyAddress = require('./property_controller/property_address/deletePropertyAddress');
 const propertyUpdateProeprtyAddress = require('./property_controller/property_address/updatePropertyAddress');
 
+const propertyGetPropertyRoom = require('./property_controller/property_rooms/getPropertyRoom');
+const propertyGetPropertyRooms = require('./property_controller/property_rooms/getPropertyRooms');
+const propertyCreatePropertyRoom = require('./property_controller/property_rooms/createPropertyRoom');
+const propertyUpdatePropertyRoom = require('./property_controller/property_rooms/updatePropertyRoom');
+const propertyDeletePropertyRoom = require('./property_controller/property_rooms/deletePropertyRoom');
+
 module.exports = guru => {
     // Job Routes
     guru.post('/job', jobCreateJob);
@@ -102,4 +108,10 @@ module.exports = guru => {
     guru.post('/property_address', propertyCreatePropertyAddress.validation, propertyCreatePropertyAddress.endpoint);
     guru.delete('/property_address', proeprtyDeletePropertyAddress.validation, proeprtyDeletePropertyAddress.endpoint);
     guru.put('/property_address', propertyUpdateProeprtyAddress.validation, propertyUpdateProeprtyAddress.endpoint);
+
+    guru.get('/property_room', propertyGetPropertyRoom);
+    guru.get('/property_rooms', propertyGetPropertyRooms);
+    guru.post('/property_room', propertyCreatePropertyRoom.validation, propertyCreatePropertyRoom.endpoint);
+    guru.put('/property_room', propertyUpdatePropertyRoom.validation, propertyUpdatePropertyRoom.endpoint);
+    guru.delete('/property_room', propertyDeletePropertyRoom.validation, propertyDeletePropertyRoom.endpoint);
 };

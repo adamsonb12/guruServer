@@ -80,6 +80,10 @@ module.exports = {
             trim: true,
             isString: true,
             escape: true,
+            isLength: {
+                errorMessage: 'zipcode should be at least 3 characters long',
+                options: { min: 3 },
+            },
         },
     }),
 
