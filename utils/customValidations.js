@@ -9,6 +9,7 @@ const User = require('../models/User');
 const Property = require('../models/Property');
 const PropertyAddress = require('../models/PropertyAddress');
 const PropertyRoom = require('../models/PropertyRoom');
+const Role = require('../models/Role');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -96,6 +97,13 @@ module.exports = {
         const propertyRoom = await new PropertyRoom({ id: id }).fetch();
         if (!propertyRoom) {
             throw new Error('Invalid Property Room Id');
+        }
+    },
+
+    validRole: async id => {
+        const role = await new Role({ id: id }).fetch();
+        if (!role) {
+            throw new Error('Invalid Role Id');
         }
     },
 };

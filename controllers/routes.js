@@ -56,6 +56,13 @@ const propertyCreatePropertyRoom = require('./property_controller/property_rooms
 const propertyUpdatePropertyRoom = require('./property_controller/property_rooms/updatePropertyRoom');
 const propertyDeletePropertyRoom = require('./property_controller/property_rooms/deletePropertyRoom');
 
+// Roles
+const roleGetRole = require('./roles_controller/getRole');
+const roleGetAllRoles = require('./roles_controller/getAllRoles');
+const roleCreateRole = require('./roles_controller/createRole');
+const roleUpdateRole = require('./roles_controller/updateRole');
+const roleDeleteRole = require('./roles_controller/deleteRole');
+
 module.exports = guru => {
     // Job Routes
     guru.post('/job', jobCreateJob);
@@ -114,4 +121,11 @@ module.exports = guru => {
     guru.post('/property_room', propertyCreatePropertyRoom.validation, propertyCreatePropertyRoom.endpoint);
     guru.put('/property_room', propertyUpdatePropertyRoom.validation, propertyUpdatePropertyRoom.endpoint);
     guru.delete('/property_room', propertyDeletePropertyRoom.validation, propertyDeletePropertyRoom.endpoint);
+
+    // Roles
+    guru.get('/role', roleGetRole);
+    guru.get('/roles', roleGetAllRoles);
+    guru.post('/role', roleCreateRole.validation, roleCreateRole.endpoint);
+    guru.put('/role', roleUpdateRole.validation, roleUpdateRole.endpoint);
+    guru.delete('/role', roleDeleteRole.validation, roleDeleteRole.endpoint);
 };
