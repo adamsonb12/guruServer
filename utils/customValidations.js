@@ -10,6 +10,7 @@ const Property = require('../models/Property');
 const PropertyAddress = require('../models/PropertyAddress');
 const PropertyRoom = require('../models/PropertyRoom');
 const Role = require('../models/Role');
+const CompanyEmployeeRole = require('../models/CompanyEmployeeRole');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -104,6 +105,13 @@ module.exports = {
         const role = await new Role({ id: id }).fetch();
         if (!role) {
             throw new Error('Invalid Role Id');
+        }
+    },
+
+    validCompanyEmployeeRole: async id => {
+        const companyEmployeeRole = await new CompanyEmployeeRole({ id: id }).fetch();
+        if (!companyEmployeeRole) {
+            throw new Error('Invalid Company Employee Role Id');
         }
     },
 };
