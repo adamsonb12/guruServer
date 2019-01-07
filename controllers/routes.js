@@ -67,6 +67,13 @@ const roleCreateRole = require('./roles_controller/createRole');
 const roleUpdateRole = require('./roles_controller/updateRole');
 const roleDeleteRole = require('./roles_controller/deleteRole');
 
+// Fixtures
+const fixtureGetFixture = require('./fixtures_controller/getFixture');
+const fixtureGetAllFixtures = require('./fixtures_controller/getAllFixtures');
+const fixtureCreateFixture = require('./fixtures_controller/createFixture');
+const fixtureDeleteFixture = require('./fixtures_controller/deleteFixture');
+const fixtureUpdateFixture = require('./fixtures_controller/updateFixture');
+
 module.exports = guru => {
     // Job Routes
     guru.post('/job', jobCreateJob);
@@ -136,4 +143,11 @@ module.exports = guru => {
     guru.post('/role', roleCreateRole.validation, roleCreateRole.endpoint);
     guru.put('/role', roleUpdateRole.validation, roleUpdateRole.endpoint);
     guru.delete('/role', roleDeleteRole.validation, roleDeleteRole.endpoint);
+
+    // Fixtures
+    guru.get('/fixture', fixtureGetFixture);
+    guru.get('/fixtures', fixtureGetAllFixtures);
+    guru.post('/fixture', fixtureCreateFixture.validation, fixtureCreateFixture.endpoint);
+    guru.delete('/fixture', fixtureDeleteFixture.validation, fixtureDeleteFixture.endpoint);
+    guru.put('/fixture', fixtureUpdateFixture.validation, fixtureUpdateFixture.endpoint);
 };

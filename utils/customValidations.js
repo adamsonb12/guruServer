@@ -11,6 +11,7 @@ const PropertyAddress = require('../models/PropertyAddress');
 const PropertyRoom = require('../models/PropertyRoom');
 const Role = require('../models/Role');
 const CompanyEmployeeRole = require('../models/CompanyEmployeeRole');
+const Fixture = require('../models/Fixture');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -112,6 +113,13 @@ module.exports = {
         const companyEmployeeRole = await new CompanyEmployeeRole({ id: id }).fetch();
         if (!companyEmployeeRole) {
             throw new Error('Invalid Company Employee Role Id');
+        }
+    },
+
+    validFixture: async id => {
+        const fixture = await new Fixture({ id: id }).fetch();
+        if (!fixture) {
+            throw new Error('Invalid id. Fixture does not exist.');
         }
     },
 };
