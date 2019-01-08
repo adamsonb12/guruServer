@@ -1,8 +1,8 @@
 const uuidv1 = require('uuid/v1');
 const { checkSchema } = require('express-validator/check');
 
-const Crew = require('../../../models/Crew');
-const { checkValidations, schemaValidCompany } = require('../../../utils/customValidations');
+const { Crew } = require('../../../models');
+const { checkValidations, validCompany } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
@@ -13,7 +13,7 @@ module.exports = {
             isString: true,
             escape: true,
             custom: {
-                options: schemaValidCompany,
+                options: validCompany,
             },
         },
         name_crew: {

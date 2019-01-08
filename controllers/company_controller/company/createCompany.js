@@ -1,7 +1,7 @@
 const uuidv1 = require('uuid/v1');
 const { checkSchema } = require('express-validator/check');
 
-const Company = require('../../../models/Company');
+const { Company } = require('../../../models');
 const { checkValidations } = require('../../../utils/customValidations');
 
 module.exports = {

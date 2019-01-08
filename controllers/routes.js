@@ -1,9 +1,3 @@
-// jobs
-const jobCreateJob = require('./jobs_controller/createJob');
-const jobCreateJobRoom = require('./jobs_controller/createJobRoom');
-const jobCreateJobRoomFixture = require('./jobs_controller/createJobRoomFixture');
-const jobCreateJobRoomFixtureCleaningTask = require('./jobs_controller/createJobRoomFixtureCleaningTask');
-
 // companies
 const companyGetCompany = require('./company_controller/company/getCompany');
 const companyGetAllCompanies = require('./company_controller/company/getAllCompanies');
@@ -75,12 +69,6 @@ const fixtureDeleteFixture = require('./fixtures_controller/deleteFixture');
 const fixtureUpdateFixture = require('./fixtures_controller/updateFixture');
 
 module.exports = guru => {
-    // Job Routes
-    guru.post('/job', jobCreateJob);
-    guru.post('/job/room', jobCreateJobRoom);
-    guru.post('/job/room/fixture', jobCreateJobRoomFixture);
-    guru.post('/job/room/fixture/cleaningtask', jobCreateJobRoomFixtureCleaningTask);
-
     // Company Routes
     guru.get('/company', companyGetCompany);
     guru.get('/companies', companyGetAllCompanies);

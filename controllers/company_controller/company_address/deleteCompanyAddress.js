@@ -1,7 +1,7 @@
 const { checkSchema } = require('express-validator/check');
 
-const CompanyAddress = require('../../../models/CompanyAddress');
-const { checkValidations, schemaValidCompanyAddress } = require('../../../utils/customValidations');
+const { CompanyAddress } = require('../../../models');
+const { checkValidations, validCompanyAddress } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
@@ -11,7 +11,7 @@ module.exports = {
             toInt: true,
             errorMessage: 'company_address_id is required',
             custom: {
-                options: schemaValidCompanyAddress,
+                options: validCompanyAddress,
             },
         },
     }),

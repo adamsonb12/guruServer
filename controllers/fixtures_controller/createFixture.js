@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator/check');
 
-const Fixture = require('../../models/Fixture');
+const { Fixture } = require('../../models');
 const { checkValidations } = require('../../utils/customValidations');
 
 module.exports = {

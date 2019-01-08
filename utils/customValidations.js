@@ -1,17 +1,20 @@
-const { body, validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 
-const Company = require('../models/Company');
-const CompanyAddress = require('../models/CompanyAddress');
-const Crew = require('../models/Crew');
-const CrewEmployee = require('../models/CrewEmployee');
-const Employee = require('../models/Employee');
-const User = require('../models/User');
-const Property = require('../models/Property');
-const PropertyAddress = require('../models/PropertyAddress');
-const PropertyRoom = require('../models/PropertyRoom');
-const Role = require('../models/Role');
-const CompanyEmployeeRole = require('../models/CompanyEmployeeRole');
-const Fixture = require('../models/Fixture');
+const {
+    Company,
+    CompanyAddress,
+    CompanyEmployeeRole,
+    Crew,
+    CrewEmployee,
+    Employee,
+    Fixture,
+    Property,
+    PropertyAddress,
+    PropertyRoom,
+    Role,
+    Task,
+    User,
+} = require('../models');
 
 module.exports = {
     checkValidations: (req, res) => {
@@ -21,21 +24,14 @@ module.exports = {
         }
     },
 
-    schemaValidCompany: async id => {
+    validCompany: async id => {
         const company = await new Company({ id: id }).fetch();
         if (!company) {
             throw new Error('Invalid Company Id');
         }
     },
 
-    standardValidCompany: body('company_id').custom(async id => {
-        const company = await new Company({ id: id }).fetch();
-        if (!company) {
-            throw new Error('Invalid Company Id');
-        }
-    }),
-
-    schemaValidCompanyAddress: async id => {
+    validCompanyAddress: async id => {
         if (typeof id === 'number' && !isNaN(id)) {
             const companyAddress = await new CompanyAddress({ id: id }).fetch();
             if (!companyAddress) {
@@ -46,20 +42,13 @@ module.exports = {
         }
     },
 
-    schemaValidUser: async id => {
-        const user = await new User({ id: id }).fetch();
-        if (!user) {
-            throw new Error('Invalid User ID');
+    validCompanyEmployeeRole: async id => {
+        const companyEmployeeRole = await new CompanyEmployeeRole({ id: id }).fetch();
+        if (!companyEmployeeRole) {
+            throw new Error('Invalid Company Employee Role Id');
         }
     },
-
-    schemaValidEmployee: async id => {
-        const employee = await new Employee({ id: id }).fetch();
-        if (!employee) {
-            throw new Error('Invalid Employee ID');
-        }
-    },
-
+    
     validCrew: async id => {
         const crew = await new Crew({ id: id }).fetch();
         if (!crew) {
@@ -78,6 +67,20 @@ module.exports = {
         const user = await new User({ email: email }).fetch();
         if (user) {
             throw new Error('Email already in use');
+        }
+    },
+    
+    validEmployee: async id => {
+        const employee = await new Employee({ id: id }).fetch();
+        if (!employee) {
+            throw new Error('Invalid Employee ID');
+        }
+    },
+
+    validFixture: async id => {
+        const fixture = await new Fixture({ id: id }).fetch();
+        if (!fixture) {
+            throw new Error('Invalid id. Fixture does not exist.');
         }
     },
 
@@ -109,17 +112,10 @@ module.exports = {
         }
     },
 
-    validCompanyEmployeeRole: async id => {
-        const companyEmployeeRole = await new CompanyEmployeeRole({ id: id }).fetch();
-        if (!companyEmployeeRole) {
-            throw new Error('Invalid Company Employee Role Id');
-        }
-    },
-
-    validFixture: async id => {
-        const fixture = await new Fixture({ id: id }).fetch();
-        if (!fixture) {
-            throw new Error('Invalid id. Fixture does not exist.');
+    validUser: async id => {
+        const user = await new User({ id: id }).fetch();
+        if (!user) {
+            throw new Error('Invalid User ID');
         }
     },
 };

@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator/check');
 
-const Role = require('../../models/Role');
+const { Role } = require('../../models');
 const { checkValidations } = require('../../utils/customValidations');
 
 module.exports = {

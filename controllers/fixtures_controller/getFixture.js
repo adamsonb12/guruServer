@@ -1,4 +1,4 @@
-const Fixture = require('../../models/Fixture');
+const { Fixture } = require('../../models');
 
 module.exports = async (req, res, next) => {
     try {

@@ -1,6 +1,6 @@
 const { checkSchema } = require('express-validator/check');
 
-const Property = require('../../../models/Property');
+const { Property } = require('../../../models');
 const { checkValidations, validProperty } = require('../../../utils/customValidations');
 
 module.exports = {

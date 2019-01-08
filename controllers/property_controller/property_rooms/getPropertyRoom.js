@@ -1,4 +1,4 @@
-const PropertyRoom = require('../../../models/PropertyRoom');
+const { PropertyRoom } = require('../../../models');
 
 module.exports = async (req, res, next) => {
     try {

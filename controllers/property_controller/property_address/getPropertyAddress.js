@@ -1,4 +1,4 @@
-const PropertyAddress = require('../../../models/PropertyAddress');
+const { PropertyAddress } = require('../../../models');
 
 module.exports = async (req, res, next) => {
     try {

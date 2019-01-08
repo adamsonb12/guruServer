@@ -1,7 +1,7 @@
 const { checkSchema } = require('express-validator/check');
 
-const User = require('../../models/User');
-const { checkValidations, schemaValidUser } = require('../../utils/customValidations');
+const { User } = require('../../models');
+const { checkValidations, validUser } = require('../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
@@ -10,7 +10,7 @@ module.exports = {
             isString: true,
             escape: true,
             custom: {
-                options: schemaValidUser,
+                options: validUser,
             },
             errorMessage: 'user_id is required',
             trim: true,

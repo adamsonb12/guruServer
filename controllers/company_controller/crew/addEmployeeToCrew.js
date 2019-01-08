@@ -3,11 +3,11 @@ const { checkSchema } = require('express-validator/check');
 
 const {
     checkValidations,
-    schemaValidCompany,
+    validCompany,
     validCrew,
-    schemaValidEmployee,
+    validEmployee,
 } = require('../../../utils/customValidations');
-const CrewEmployee = require('../../../models/CrewEmployee');
+const { CrewEmployee } = require('../../../models');
 
 module.exports = {
     validation: checkSchema({
@@ -18,7 +18,7 @@ module.exports = {
             isString: true,
             escape: true,
             custom: {
-                options: schemaValidCompany,
+                options: validCompany,
             },
         },
         employee_id: {
@@ -28,7 +28,7 @@ module.exports = {
             isString: true,
             escape: true,
             custom: {
-                options: schemaValidEmployee,
+                options: validEmployee,
             },
         },
         crew_id: {
