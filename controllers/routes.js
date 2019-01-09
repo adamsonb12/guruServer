@@ -68,6 +68,13 @@ const fixtureCreateFixture = require('./fixtures_controller/createFixture');
 const fixtureDeleteFixture = require('./fixtures_controller/deleteFixture');
 const fixtureUpdateFixture = require('./fixtures_controller/updateFixture');
 
+// Tasks
+const taskGetTask = require('./tasks_controller/getTask');
+const taskGetAllTasks = require('./tasks_controller/getAllTasks');
+const taskCreateTask = require('./tasks_controller/createTask');
+const taskUpdateTask = require('./tasks_controller/updateTask');
+const taskDeleteTask = require('./tasks_controller/deleteTask');
+
 module.exports = guru => {
     // Company Routes
     guru.get('/company', companyGetCompany);
@@ -138,4 +145,11 @@ module.exports = guru => {
     guru.post('/fixture', fixtureCreateFixture.validation, fixtureCreateFixture.endpoint);
     guru.delete('/fixture', fixtureDeleteFixture.validation, fixtureDeleteFixture.endpoint);
     guru.put('/fixture', fixtureUpdateFixture.validation, fixtureUpdateFixture.endpoint);
+
+    // Tasks
+    guru.get('/task', taskGetTask);
+    guru.get('/tasks', taskGetAllTasks);
+    guru.post('/task', taskCreateTask.validation, taskCreateTask.endpoint);
+    guru.put('/task', taskUpdateTask.validation, taskUpdateTask.endpoint);
+    guru.delete('/task', taskDeleteTask.validation, taskDeleteTask.endpoint);
 };

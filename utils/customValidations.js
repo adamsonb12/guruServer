@@ -48,7 +48,7 @@ module.exports = {
             throw new Error('Invalid Company Employee Role Id');
         }
     },
-    
+
     validCrew: async id => {
         const crew = await new Crew({ id: id }).fetch();
         if (!crew) {
@@ -69,7 +69,7 @@ module.exports = {
             throw new Error('Email already in use');
         }
     },
-    
+
     validEmployee: async id => {
         const employee = await new Employee({ id: id }).fetch();
         if (!employee) {
@@ -108,6 +108,13 @@ module.exports = {
     validRole: async id => {
         const role = await new Role({ id: id }).fetch();
         if (!role) {
+            throw new Error('Invalid Role Id');
+        }
+    },
+
+    validTask: async id => {
+        const task = await new Task({ id: id }).fetch();
+        if (!task) {
             throw new Error('Invalid Role Id');
         }
     },
