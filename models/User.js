@@ -30,4 +30,10 @@ module.exports = bookshelf.model('User', {
     },
     hasTimeStamps: true,
     soft: true,
+    validPassword: function(password) {
+        if (!password) {
+            throw new Error;
+        }
+        return password === this.get('password');
+    }
 });

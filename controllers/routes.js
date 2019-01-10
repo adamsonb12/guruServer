@@ -77,6 +77,9 @@ const taskCreateTask = require('./tasks_controller/createTask');
 const taskUpdateTask = require('./tasks_controller/updateTask');
 const taskDeleteTask = require('./tasks_controller/deleteTask');
 
+// Auth
+const localAuth = require('./auth_controller/localAuth');
+
 module.exports = guru => {
     // Company Routes
     guru.get('/company', companyGetCompany);
@@ -160,4 +163,7 @@ module.exports = guru => {
     guru.post('/task', taskCreateTask.validation, taskCreateTask.endpoint);
     guru.put('/task', taskUpdateTask.validation, taskUpdateTask.endpoint);
     guru.delete('/task', taskDeleteTask.validation, taskDeleteTask.endpoint);
+
+    // Auth
+    guru.post('/login', localAuth);
 };
