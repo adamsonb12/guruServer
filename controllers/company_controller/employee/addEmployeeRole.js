@@ -1,12 +1,12 @@
 const uuidv1 = require('uuid/v1');
 const { checkSchema } = require('express-validator/check');
 
-const CompanyEmployeeRole = require('../../../models/CompanyEmployeeRole');
+const { CompanyEmployeeRole } = require('../../../models');
 const {
     checkValidations,
     validRole,
-    schemaValidCompany,
-    schemaValidEmployee,
+    validCompany,
+    validEmployee,
 } = require('../../../utils/customValidations');
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
         company_id: {
             in: ['params', 'body'],
             custom: {
-                options: schemaValidCompany,
+                options: validCompany,
             },
             isString: true,
             trim: true,
@@ -32,7 +32,7 @@ module.exports = {
         employee_id: {
             in: ['params', 'body'],
             custom: {
-                options: schemaValidEmployee,
+                options: validEmployee,
             },
             isString: true,
             trim: true,

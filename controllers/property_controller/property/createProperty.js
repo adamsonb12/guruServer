@@ -1,8 +1,8 @@
 const uuidv1 = require('uuid/v1');
 const { checkSchema } = require('express-validator/check');
 
-const Property = require('../../../models/Property');
-const { checkValidations, schemaValidUser } = require('../../../utils/customValidations');
+const { Property } = require('../../../models');
+const { checkValidations, validUser } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
@@ -13,7 +13,7 @@ module.exports = {
             trim: true,
             escape: true,
             custom: {
-                options: schemaValidUser,
+                options: validUser,
             },
         },
         name_property: {

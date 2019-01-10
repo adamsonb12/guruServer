@@ -1,11 +1,11 @@
 const { checkSchema } = require('express-validator/check');
 
-const CompanyAddress = require('../../../models/CompanyAddress');
-const { checkValidations, schemaValidCompanyAddress } = require('../../../utils/customValidations');
+const { CompanyAddress } = require('../../../models');
+const { checkValidations, validCompanyAddress } = require('../../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        company_address_id: schemaValidCompanyAddress,
+        company_address_id: validCompanyAddress,
         options: {
             in: ['params', 'body'],
             errorMessage: 'The options object is required',

@@ -1,20 +1,20 @@
 const { checkSchema } = require('express-validator/check');
 
-const { Crew } = require('../../../models');
-const { checkValidations, validCrew } = require('../../../utils/customValidations');
+const { Fixture } = require('../../models');
+const { checkValidations, validFixture } = require('../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        crew_id: {
+        fixture_id: {
             custom: {
-                options: validCrew,
+                options: validFixture,
             },
         },
         options: {
             in: ['params', 'body'],
             errorMessage: 'The options object is required',
         },
-        'options.name_crew': {
+        'options.name_fixture': {
             optional: true,
             isString: true,
             trim: true,
@@ -27,10 +27,10 @@ module.exports = {
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
-                const { crew_id, options } = req.body;
+                const { fixture_id, options } = req.body;
                 options.updated_at = new Date();
-                const crew = await new Crew({ id: crew_id }).save(options, { patch: true });
-                res.status(200).send({ crew: crew });
+                const fixture = await new Fixture({ id: fixture_id }).save(options, { patch: true });
+                res.status(200).send({ fixture: fixture });
             } catch (err) {
                 next(err);
             }

@@ -1,9 +1,3 @@
-// jobs
-const jobCreateJob = require('./jobs_controller/createJob');
-const jobCreateJobRoom = require('./jobs_controller/createJobRoom');
-const jobCreateJobRoomFixture = require('./jobs_controller/createJobRoomFixture');
-const jobCreateJobRoomFixtureCleaningTask = require('./jobs_controller/createJobRoomFixtureCleaningTask');
-
 // companies
 const companyGetCompany = require('./company_controller/company/getCompany');
 const companyGetAllCompanies = require('./company_controller/company/getAllCompanies');
@@ -67,13 +61,23 @@ const roleCreateRole = require('./roles_controller/createRole');
 const roleUpdateRole = require('./roles_controller/updateRole');
 const roleDeleteRole = require('./roles_controller/deleteRole');
 
-module.exports = guru => {
-    // Job Routes
-    guru.post('/job', jobCreateJob);
-    guru.post('/job/room', jobCreateJobRoom);
-    guru.post('/job/room/fixture', jobCreateJobRoomFixture);
-    guru.post('/job/room/fixture/cleaningtask', jobCreateJobRoomFixtureCleaningTask);
+// Fixtures
+const fixtureGetFixture = require('./fixtures_controller/getFixture');
+const fixtureGetAllFixtures = require('./fixtures_controller/getAllFixtures');
+const fixtureCreateFixture = require('./fixtures_controller/createFixture');
+const fixtureDeleteFixture = require('./fixtures_controller/deleteFixture');
+const fixtureUpdateFixture = require('./fixtures_controller/updateFixture');
+const fixtureAttachTaskToFixture = require('./fixtures_controller/attachTaskToFixture');
+const fixtureDetachTaskFromFixture = require('./fixtures_controller/detachTaskFromFixture');
 
+// Tasks
+const taskGetTask = require('./tasks_controller/getTask');
+const taskGetAllTasks = require('./tasks_controller/getAllTasks');
+const taskCreateTask = require('./tasks_controller/createTask');
+const taskUpdateTask = require('./tasks_controller/updateTask');
+const taskDeleteTask = require('./tasks_controller/deleteTask');
+
+module.exports = guru => {
     // Company Routes
     guru.get('/company', companyGetCompany);
     guru.get('/companies', companyGetAllCompanies);
@@ -94,7 +98,11 @@ module.exports = guru => {
     guru.put('/employee', companyUpdateEmployee.validation, companyUpdateEmployee.endpoint);
 
     guru.post('/employee_role', companyAddCompanyEmployeeRole.validation, companyAddCompanyEmployeeRole.endpoint);
-    guru.delete('/employee_role', companyRemoveCompanyEmployeeRole.validation, companyRemoveCompanyEmployeeRole.endpoint);
+    guru.delete(
+        '/employee_role',
+        companyRemoveCompanyEmployeeRole.validation,
+        companyRemoveCompanyEmployeeRole.endpoint
+    );
     guru.put('/employee_role', companyUpdateCompanyEmployeeRole.validation, companyUpdateCompanyEmployeeRole.endpoint);
 
     guru.get('/crew', companyGetCrew);
@@ -136,4 +144,20 @@ module.exports = guru => {
     guru.post('/role', roleCreateRole.validation, roleCreateRole.endpoint);
     guru.put('/role', roleUpdateRole.validation, roleUpdateRole.endpoint);
     guru.delete('/role', roleDeleteRole.validation, roleDeleteRole.endpoint);
+
+    // Fixtures
+    guru.get('/fixture', fixtureGetFixture);
+    guru.get('/fixtures', fixtureGetAllFixtures);
+    guru.post('/fixture', fixtureCreateFixture.validation, fixtureCreateFixture.endpoint);
+    guru.delete('/fixture', fixtureDeleteFixture.validation, fixtureDeleteFixture.endpoint);
+    guru.put('/fixture', fixtureUpdateFixture.validation, fixtureUpdateFixture.endpoint);
+    guru.post('/fixture_task', fixtureAttachTaskToFixture.validation, fixtureAttachTaskToFixture.endpoint);
+    guru.delete('/fixture_task', fixtureDetachTaskFromFixture.validation, fixtureDetachTaskFromFixture.endpoint);
+
+    // Tasks
+    guru.get('/task', taskGetTask);
+    guru.get('/tasks', taskGetAllTasks);
+    guru.post('/task', taskCreateTask.validation, taskCreateTask.endpoint);
+    guru.put('/task', taskUpdateTask.validation, taskUpdateTask.endpoint);
+    guru.delete('/task', taskDeleteTask.validation, taskDeleteTask.endpoint);
 };

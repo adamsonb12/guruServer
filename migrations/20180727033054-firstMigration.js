@@ -91,14 +91,14 @@ exports.up = function(db, callback) {
                     },
                 },
             }),
-            db.createTable.bind(db, 'fixture_tasks', {
+            db.createTable.bind(db, 'fixtures_tasks', {
                 id: { type: dataType.STRING, primaryKey: true },
                 fixture_id: {
                     type: dataType.INTEGER,
                     unsigned: true,
                     notNull: true,
                     foreignKey: {
-                        name: 'fixture_tasks_fixture_fk',
+                        name: 'fixtures_tasks_fixture_fk',
                         table: 'fixtures',
                         rules: {
                             onDelete: 'CASCADE',
@@ -112,7 +112,7 @@ exports.up = function(db, callback) {
                     unsigned: true,
                     notNull: true,
                     foreignKey: {
-                        name: 'fixture_tasks_task_fk',
+                        name: 'fixtures_tasks_task_fk',
                         table: 'tasks',
                         rules: {
                             onDelete: 'CASCADE',
@@ -454,7 +454,7 @@ exports.down = function(db, callback) {
             db.dropTable.bind(db, 'crews', { ifExists: true }),
             db.dropTable.bind(db, 'employees', { ifExists: true }),
             db.dropTable.bind(db, 'properties', { ifExists: true }),
-            db.dropTable.bind(db, 'fixture_tasks', { ifExists: true }),
+            db.dropTable.bind(db, 'fixtures_tasks', { ifExists: true }),
             db.dropTable.bind(db, 'company_addresses', { ifExists: true }),
             // step 0 tables
             db.dropTable.bind(db, 'companies', { ifExists: true }),

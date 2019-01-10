@@ -1,7 +1,7 @@
 const { checkSchema } = require('express-validator/check');
 
 const { checkValidations, validCrewEmployee } = require('../../../utils/customValidations');
-const CrewEmployee = require('../../../models/CrewEmployee');
+const { CrewEmployee } = require('../../../models');
 
 module.exports = {
     validation: checkSchema({

@@ -1,8 +1,16 @@
-const Company = require('../../../models/Company');
-const { checkValidations, standardValidCompany } = require('../../../utils/customValidations');
+const { checkSchema } = require('express-validator/check');
+
+const { Company } = require('../../../models');
+const { checkValidations, validCompany } = require('../../../utils/customValidations');
 
 module.exports = {
-    validation: standardValidCompany,
+    validation: checkSchema({
+        company_id: {
+            custom: {
+                options: validCompany,
+            },
+        }
+    }),
 
     endpoint: async (req, res, next) => {
         checkValidations(req, res);

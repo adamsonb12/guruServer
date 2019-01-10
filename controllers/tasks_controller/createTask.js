@@ -1,19 +1,19 @@
 const { checkSchema } = require('express-validator/check');
 
-const { Role } = require('../../models');
+const { Task } = require('../../models');
 const { checkValidations } = require('../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        name_role: {
+        name_task: {
             in: ['params', 'body'],
-            errorMessage: 'name_role is required',
+            errorMessage: 'name_task is required',
             trim: true,
             escape: true,
             isString: true,
             isLength: {
-                errorMessage: 'name_role should be at least 3 characters long',
-                options: { min: 3 },
+                errorMessage: 'name_task should be at least 2 characters long',
+                options: { min: 2 },
             },
         },
     }),
@@ -21,15 +21,15 @@ module.exports = {
     endpoint: async (req, res, next) => {
         checkValidations(req, res);
         if (!res.headersSent) {
-            const { name_role } = req.body;
+            const { name_task } = req.body;
             const date = new Date();
             try {
-                const newRole = await new Role({
-                    name_role: name_role,
+                const newTask = await new Task({
+                    name_task,
                     created_at: date,
                     updated_at: date,
                 }).save(null, { method: 'insert' });
-                res.status(200).send({ role: newRole });
+                res.status(200).send({ newTask: newTask });
             } catch (err) {
                 next(err);
             }

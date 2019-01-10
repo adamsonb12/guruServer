@@ -1,16 +1,16 @@
 const { checkSchema } = require('express-validator/check');
 
-const { Crew } = require('../../../models');
-const { checkValidations, validCrew } = require('../../../utils/customValidations');
+const { Fixture } = require('../../models');
+const { checkValidations, validFixture } = require('../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        crew_id: {
+        fixture_id: {
             in: ['params', 'body'],
-            isString: true,
-            escape: true,
+            isInt: true,
+            errorMessage: 'fixture_id is required',
             custom: {
-                options: validCrew,
+                options: validFixture,
             },
         },
     }),
@@ -19,8 +19,8 @@ module.exports = {
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
-                await new Crew({ id: req.body.crew_id }).destroy();
-                res.status(200).send({ deleteCrew: 'success' });
+                await new Fixture({ id: req.body.fixture_id }).destroy();
+                res.status(200).send({ deleteFixture: 'success ' });
             } catch (err) {
                 next(err);
             }

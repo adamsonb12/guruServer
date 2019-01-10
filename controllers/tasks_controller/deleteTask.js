@@ -1,16 +1,16 @@
 const { checkSchema } = require('express-validator/check');
 
-const { Crew } = require('../../../models');
-const { checkValidations, validCrew } = require('../../../utils/customValidations');
+const { Task } = require('../../models');
+const { checkValidations, validTask } = require('../../utils/customValidations');
 
 module.exports = {
     validation: checkSchema({
-        crew_id: {
+        task_id: {
             in: ['params', 'body'],
-            isString: true,
-            escape: true,
+            isInt: true,
+            errorMessage: 'task_id is required',
             custom: {
-                options: validCrew,
+                options: validTask,
             },
         },
     }),
@@ -19,8 +19,8 @@ module.exports = {
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
-                await new Crew({ id: req.body.crew_id }).destroy();
-                res.status(200).send({ deleteCrew: 'success' });
+                await new Task({ id: req.body.task_id }).destroy();
+                res.status(200).send({ deleteTask: 'success' });
             } catch (err) {
                 next(err);
             }

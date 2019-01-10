@@ -1,4 +1,4 @@
-const CompanyAddress = require('../../../models/CompanyAddress');
+const { CompanyAddress } = require('../../../models');
 
 module.exports = async (req, res, next) => {
     try {
