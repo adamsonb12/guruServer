@@ -83,6 +83,7 @@ const localAuth = require('./auth_controller/localAuth');
 // Jobs
 const jobGetJob = require('./job_controller/getJob');
 const jobGetAllJobs = require('./job_controller/getAllJobs');
+const jobGetCrewJobs = require('./job_controller/getCrewJobs');
 
 module.exports = guru => {
     // Company Routes
@@ -174,4 +175,5 @@ module.exports = guru => {
     // Job Routes
     guru.get('/job', jobGetJob);
     guru.get('/jobs', jobGetAllJobs);
+    guru.get('/crew_jobs', jobGetCrewJobs);
 };
