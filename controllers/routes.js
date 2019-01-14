@@ -79,6 +79,7 @@ const taskDeleteTask = require('./tasks_controller/deleteTask');
 
 // Auth
 const localAuth = require('./auth_controller/localAuth');
+const authLogout = require('./auth_controller/logout');
 
 module.exports = guru => {
     // Company Routes
@@ -166,4 +167,5 @@ module.exports = guru => {
 
     // Auth
     guru.post('/login', localAuth);
+    guru.post('/logout', authLogout);
 };

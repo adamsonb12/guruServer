@@ -7,7 +7,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(async function(id, done) {
-    try{
+    try {
         const user = await new User({ id: id }).fetch();
         return done(null, user);
     } catch (e) {
@@ -16,8 +16,8 @@ passport.deserializeUser(async function(id, done) {
 });
 
 passport.use(
-    new LocalStrategy({usernameField: 'email'}, async function(email, password, done) {
-        try{
+    new LocalStrategy({ usernameField: 'email' }, async function(email, password, done) {
+        try {
             const user = await new User({ email: email }).fetch();
             if (!user) {
                 return done(null, false, { message: 'Incorrect email.' });
