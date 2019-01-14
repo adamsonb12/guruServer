@@ -80,6 +80,10 @@ const taskDeleteTask = require('./tasks_controller/deleteTask');
 // Auth
 const localAuth = require('./auth_controller/localAuth');
 
+// Jobs
+const jobGetJob = require('./job_controller/getJob');
+const jobGetAllJobs = require('./job_controller/getAllJobs');
+
 module.exports = guru => {
     // Company Routes
     guru.get('/company', companyGetCompany);
@@ -166,4 +170,8 @@ module.exports = guru => {
 
     // Auth
     guru.post('/login', localAuth);
+
+    // Job Routes
+    guru.get('/job', jobGetJob);
+    guru.get('/jobs', jobGetAllJobs);
 };
