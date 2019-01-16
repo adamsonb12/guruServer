@@ -10,7 +10,7 @@ module.exports = () => {
 
     guru.use(express.json());
 
-    guru.use(session({ secret: 'cats' }));
+    guru.use(session({ secret: process.env.SESSION_SECRET }));
     guru.use(passport.initialize());
     guru.use(passport.session());
 
