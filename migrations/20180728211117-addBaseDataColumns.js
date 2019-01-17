@@ -52,8 +52,8 @@ exports.up = function(db, callback) {
                 notNull: true,
             }),
             db.addColumn.bind(db, 'users', 'password', {
-                type: dataType.STRING,
-                length: 35,
+                type: dataType.CHAR,
+                length: 60,
                 notNull: true,
             }),
             db.addColumn.bind(db, 'users', 'date_birth', {

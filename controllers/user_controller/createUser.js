@@ -1,6 +1,5 @@
 const uuidv1 = require('uuid/v1');
 const bcrypt = require('bcrypt');
-console.log('bcrypt', bcrypt);
 const { checkSchema } = require('express-validator/check');
 
 const { User } = require('../../models');
@@ -69,20 +68,19 @@ module.exports = {
     }),
 
     endpoint: async (req, res, next) => {
-      console.log('here', bcrypt);
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
                 const { name_first, name_middle, name_last, email, password, date_birth } = req.body;
                 const date = new Date();
-                const hash = await bcrypt.hash(password);
+                const hash = await bcrypt.hash(password, parseInt(process.env.SALT_STACK, 10));
                 const newUser = await new User({
                     id: uuidv1(),
                     name_first,
                     name_middle,
                     name_last,
                     email,
-                    hash,
+                    password: hash,
                     date_birth,
                     created_at: date,
                     updated_at: date,

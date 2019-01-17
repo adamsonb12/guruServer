@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const bookshelf = require('../config/bookshelf');
 const uuidv1 = require('uuid/v1');
 
