@@ -22,7 +22,7 @@ passport.use(
             if (!user) {
                 return done(null, false, { message: 'Incorrect email.' });
             }
-            if (!user.validPassword(password)) {
+            if (!(await user.validPassword(password))) {
                 return done(null, false, { message: 'Incorrect password.' });
             }
             return done(null, user);

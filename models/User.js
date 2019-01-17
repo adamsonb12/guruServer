@@ -30,10 +30,10 @@ module.exports = bookshelf.model('User', {
     },
     hasTimeStamps: true,
     soft: true,
-    validPassword: function(password) {
+    validPassword: async function(password) {
         if (!password) {
             throw new Error;
         }
-        return password === this.get('password');
+        return await bcrypt.compare(password, this.get('password'));
     }
 });
