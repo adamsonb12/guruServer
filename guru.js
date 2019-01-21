@@ -9,6 +9,7 @@ module.exports = () => {
     const guru = express();
 
     guru.use(express.json());
+    guru.use(express.urlencoded());
 
     guru.use(session({ secret: process.env.SESSION_SECRET }));
     guru.use(passport.initialize());

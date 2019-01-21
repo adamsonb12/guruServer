@@ -1,4 +1,5 @@
 const uuidv1 = require('uuid/v1');
+const bcrypt = require('bcrypt');
 const { checkSchema } = require('express-validator/check');
 
 const { User } = require('../../models');
@@ -53,8 +54,8 @@ module.exports = {
             isString: true,
             escape: true,
             isLength: {
-                errorMessage: 'password should be at least 8 characters long',
-                options: { min: 8 },
+                errorMessage: 'password should be at least 10 characters long',
+                options: { min: 10 },
             },
         },
         date_birth: {
@@ -72,13 +73,14 @@ module.exports = {
             try {
                 const { name_first, name_middle, name_last, email, password, date_birth } = req.body;
                 const date = new Date();
+                const hash = await bcrypt.hash(password, parseInt(process.env.SALT_STACK, 10));
                 const newUser = await new User({
                     id: uuidv1(),
                     name_first,
                     name_middle,
                     name_last,
                     email,
-                    password,
+                    password: hash,
                     date_birth,
                     created_at: date,
                     updated_at: date,
