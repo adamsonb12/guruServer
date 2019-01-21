@@ -84,6 +84,13 @@ module.exports = {
         }
     },
 
+    validJob: async id => {
+        const job = await new job({ id: id }).fetch();
+        if(!job) {
+            throw new Error('Invalid Job Id')
+        }
+    },
+
     validProperty: async id => {
         const property = await new Property({ id: id }).fetch();
         if (!property) {
