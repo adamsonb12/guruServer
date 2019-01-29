@@ -1,4 +1,5 @@
 const { checkSchema } = require('express-validator/check');
+const bcrypt = require('bcrypt');
 
 const { User } = require('../../models');
 const { checkValidations, validEmail, validUser } = require('../../utils/customValidations');
@@ -64,8 +65,8 @@ module.exports = {
             isString: true,
             escape: true,
             isLength: {
-                errorMessage: 'password should be at least 8 characters long',
-                options: { min: 8 },
+                errorMessage: 'password should be at least 10 characters long',
+                options: { min: 10 },
             },
         },
         'options.date_birth': {
@@ -84,6 +85,9 @@ module.exports = {
             try {
                 const { user_id, options } = req.body;
                 options.updated_at = new Date();
+                if (options.password) {
+                    options.password = await bcrypt.hash(options.password, parseInt(process.env.SALT_STACK, 10));
+                }
                 const user = await new User({ id: user_id }).save(options, { patch: true });
                 res.status(200).send({ user: user });
             } catch (err) {
