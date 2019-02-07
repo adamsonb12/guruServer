@@ -12,10 +12,15 @@ module.exports = bookshelf.model('Job', {
     tableName: 'jobs',
     defaults: {
         id: uuidv1(),
+        // when it was created
         date_scheduled: new Date(Date.now()),
+        // when it's scheduled for
         date_starts: new Date(Date.now()),
+        // how long the job will take - we will calculate
         estimated_duration: 0,
+        // when company gets to the property
         date_arrived: '',
+        // whenever company complete
         date_completed: '',
         tip_amount: 0,
     },

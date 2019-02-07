@@ -32,7 +32,8 @@ module.exports = {
 		},
 		property_id: {
             in: ['params', 'body'],
-            errorMessage: 'property_id is required',
+            optional: true,
+            errorMessage: 'property_id must be an id',
             trim: true,
             isString: true,
             escape: true,
