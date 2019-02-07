@@ -184,6 +184,6 @@ module.exports = guru => {
     guru.get('/job', jobGetJob);
     guru.get('/jobs', jobGetAllJobs);
     guru.get('/crew_jobs', jobGetCrewJobs);
-    guru.post('/job', jobCreateJob);
-    guru.put('/job', jobUpdateJob);
+    guru.post('/job', jobCreateJob.validation, jobCreateJob.endpoint);
+    guru.put('/job', jobUpdateJob.validation, jobUpdateJob.endpoint);
 };
