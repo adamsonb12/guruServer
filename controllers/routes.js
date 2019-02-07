@@ -87,6 +87,8 @@ const authLoginFail = require('./auth_controller/loginFail');
 const jobGetJob = require('./job_controller/getJob');
 const jobGetAllJobs = require('./job_controller/getAllJobs');
 const jobGetCrewJobs = require('./job_controller/getCrewJobs');
+const jobCreateJob = require('./job_controller/createJob');
+const jobUpdateJob = require('./job_controller/updateJob');
 
 module.exports = guru => {
     // Company Routes
@@ -182,4 +184,6 @@ module.exports = guru => {
     guru.get('/job', jobGetJob);
     guru.get('/jobs', jobGetAllJobs);
     guru.get('/crew_jobs', jobGetCrewJobs);
+    guru.post('/job', jobCreateJob);
+    guru.put('/job', jobUpdateJob);
 };
