@@ -8,6 +8,7 @@ const {
     CrewEmployee,
     Employee,
     Fixture,
+    Job,
     Property,
     PropertyAddress,
     PropertyRoom,
@@ -85,7 +86,7 @@ module.exports = {
     },
 
     validJob: async id => {
-        const job = await new job({ id: id }).fetch();
+        const job = await new Job({ id: id }).fetch();
         if(!job) {
             throw new Error('Invalid Job Id')
         }
