@@ -85,7 +85,16 @@ module.exports = {
                     created_at: date,
                     updated_at: date,
                 }).save(null, { method: 'insert' });
-                res.status(200).send({ user: newUser });
+                res.status(200).send({
+                    user: {
+                        id: newUser.attributes.id,
+                        name_first: newUser.attributes.name_first,
+                        name_last: newUser.attributes.name_last,
+                        name_middle: newUser.attributes.name_middle || '',
+                        email: newUser.attributes.email,
+                        date_birth: newUser.attributes.date_birth,
+                    },
+                });
             } catch (err) {
                 next(err);
             }
