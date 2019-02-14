@@ -89,6 +89,7 @@ const jobGetAllJobs = require('./job_controller/getAllJobs');
 const jobGetCrewJobs = require('./job_controller/getCrewJobs');
 const jobCreateJob = require('./job_controller/createJob');
 const jobUpdateJob = require('./job_controller/updateJob');
+const jobDeleteJob = require('./job_controller/deleteJob');
 
 module.exports = guru => {
     // Company Routes
@@ -186,4 +187,5 @@ module.exports = guru => {
     guru.get('/crew_jobs', jobGetCrewJobs);
     guru.post('/job', jobCreateJob.validation, jobCreateJob.endpoint);
     guru.put('/job', jobUpdateJob.validation, jobUpdateJob.endpoint);
+    guru.delete('/job', jobDeleteJob.validation, jobDeleteJob.endpoint);
 };
